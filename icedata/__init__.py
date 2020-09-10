@@ -1,2 +1,3 @@
 import icedata.utils
-import icedata.fridge
+
+from icedata.datasets import *

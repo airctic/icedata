@@ -2,7 +2,7 @@ __all__ = ["tf_efficientdet_lite0", "faster_rcnn_resnet50fpn"]
 
 from icevision.all import *
 from icedata.utils import load_model_weights_from_url
-from icedata.fridge.data import NUM_CLASSES
+from icedata.datasets.fridge.data import NUM_CLASSES
 
 
 def _load_efficientdet(name, weights_url):
