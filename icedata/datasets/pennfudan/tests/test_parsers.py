@@ -2,7 +2,7 @@ import icedata
 from icevision.all import *
 
 
-def test_pennfudan_parser(data_dir):
+def test_parser(data_dir):
     class_map = icedata.pennfudan.class_map()
     parser = icedata.pennfudan.parser(data_dir)
 
