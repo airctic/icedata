@@ -25,6 +25,6 @@ jobs:
       run: |
         poetry config repositories.testpypi https://test.pypi.org/legacy/
         poetry publish -r testpypi -u "__token__" -p ${{ secrets.test_pypi_password }}
-    - name: Publish to Pypi
+    - name: Publish to PyPi
       run: poetry publish -u "__token__" -p ${{ secrets.pypi_password }}
       
