@@ -1,14 +1,16 @@
-__all__ = ["load", "class_map"]
+__all__ = ["NUM_CLASSES", "load_data", "class_map"]
 
 from icevision.imports import *
 from icevision import *
+
+NUM_CLASSES = 1 + 1
 
 
 def class_map(background: Optional[int] = 0) -> ClassMap:
     return ClassMap(["person"], background=background)
 
 
-def load(force_download=False):
+def load_data(force_download=False):
     url = "https://www.cis.upenn.edu/~jshi/ped_html/PennFudanPed.zip"
     # setup file names
     save_dir = get_data_dir() / "PennFudanPed"

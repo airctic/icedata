@@ -22,6 +22,6 @@ def tf_efficientdet_lite0():
     return _load_efficientdet("tf_efficientdet_lite0", weights_url)
 
 
-def faster_rcnn_resnet50fpn():
+def faster_rcnn_resnet50_fpn():
     weights_url = "https://github.com/airctic/model_zoo/releases/download/m1/fridge_faster_resnetfpn50.zip"
     return _load_faster_rcnn(None, weights_url)
