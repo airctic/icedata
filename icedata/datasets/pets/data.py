@@ -1,4 +1,4 @@
-__all__ = ["class_map", "load"]
+__all__ = ["NUM_CLASSES", "class_map", "load"]
 
 from icevision.imports import *
 from icevision.core import *
@@ -45,6 +45,7 @@ _CLASSES = sorted(
         "Sphynx",
     }
 )
+NUM_CLASSES = len(_CLASSES) + 1
 
 
 def class_map(background: int = 0):
