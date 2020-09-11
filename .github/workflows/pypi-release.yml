@@ -17,19 +17,13 @@ jobs:
         python-version: '3.x'
     
     - name: Python Poetry Action
-      uses: abatilo/actions-poetry@v1.0.0
+      uses: abatilo/actions-poetry@v2.0.0
     - name: Poetry build
       run: poetry build
-           
-    - name: Publish to Test PyPI
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        user: __token__
-        password: ${{ secrets.test_pypi_password }}
-        repository_url: https://test.pypi.org/legacy/
-
-    - name: Publish distribution 📦 to PyPI
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        user: __token__
-        password: ${{ secrets.pypi_password }} 
+    - name: Publish to Test PyPi
+      run: |
+        poetry config repositories.testpypi https://test.pypi.org/legacy/
+        poetry publish -r testpypi -u "__token__" -p ${{ secrets.test_pypi_password }}
+    - name: Publish to Pypi
+      run: poetry publish -u "__token__" -p ${{ secrets.pypi_password }}
+      
