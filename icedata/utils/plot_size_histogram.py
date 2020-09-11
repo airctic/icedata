@@ -1,8 +1,6 @@
 __all__ = ["plot_size_histogram"]
 
-from icevision.imports import *
-from icevision.core import *
-from icevision import *
+from icevision.all import *
 
 
 def plot_size_histogram(records: List[RecordType], show=True) -> List[plt.Axes]:
