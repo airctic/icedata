@@ -2,7 +2,7 @@ import icedata
 from icevision.all import *
 
 
-def test_fridge_parser(data_dir):
+def test_parser(data_dir):
     class_map = icedata.fridge.class_map()
     parser = icedata.fridge.parser(data_dir, class_map=class_map)
 
