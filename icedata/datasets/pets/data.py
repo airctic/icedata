@@ -1,8 +1,9 @@
-__all__ = ["NUM_CLASSES", "class_map", "load"]
+__all__ = ["NUM_CLASSES", "class_map", "load_data", "load"]
 
 from icevision.imports import *
 from icevision.core import *
 from icevision.utils import *
+
 
 _CLASSES = sorted(
     {
@@ -52,7 +53,7 @@ def class_map(background: int = 0):
     return ClassMap(classes=_CLASSES, background=background)
 
 
-def load(force_download=False):
+def load_data(force_download: bool = False):
     base_url = "http://www.robots.ox.ac.uk/~vgg/data/pets/data"
     save_dir = get_data_dir() / "pets"
     save_dir.mkdir(exist_ok=True)
@@ -68,3 +69,8 @@ def load(force_download=False):
         download_and_extract(url=url_annotations, save_path=annotations_tar_file)
 
     return save_dir
+
+
+def load(force_download: bool = False):
+    warnings.warn("load will be deprecated in 0.1.0, please use load_data instead")
+    return load_data(force_download=force_download)
