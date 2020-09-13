@@ -2,7 +2,7 @@
 
 ##
 
-!!! danger "IceData: Agnostic Object Detection Framework"
+!!! danger "IceData: Datasets Hub for the IceVision Framework"
     We are both a welcoming and an open community. 
     We warmly invite you to join us either as a user or a community contributor.
     We will be happy to hear from you.
