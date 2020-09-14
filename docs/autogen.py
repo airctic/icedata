@@ -164,12 +164,17 @@ def examples_to_md(dest_dir):
 def generate(dest_dir: Path):
     template_dir = icedata_dir / "docs" / "templates"
     template_images_dir = Path(template_dir) / "images"
+    datasets_dir = dest_dir / "datasets"
 
     # Create dest_dir if doesn't exist
     if os.path.exists(dest_dir):
         print("Removing sources folder:", dest_dir)
         shutil.rmtree(dest_dir)
     os.makedirs(dest_dir)
+
+    # Create datasets_dir
+    print("datasets_dir folder:", datasets_dir)
+    os.makedirs(datasets_dir)
 
     # Copy images folder from root folder to the template images folder
     copy_tree(str(icedata_dir / "images"), str(template_images_dir))
@@ -218,6 +223,11 @@ def generate(dest_dir: Path):
     shutil.copyfile(
         icedata_dir / "docs/CHANGING-THE-COLORS.md",
         dest_dir / "changing_the_colors.md",
+    )
+
+    # Copy PETS README
+    shutil.copyfile(
+        icedata_dir / "icedata/datasets/pets/README.md", dest_dir / "pets.md"
     )
 
     # Copy .md examples files to destination examples folder
