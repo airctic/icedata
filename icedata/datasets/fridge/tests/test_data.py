@@ -1,7 +1,7 @@
 import icedata
 
 
-def test_fridge_class_map():
+def test_class_map():
     num_classes = icedata.fridge.NUM_CLASSES
     class_map = icedata.fridge.class_map()
 

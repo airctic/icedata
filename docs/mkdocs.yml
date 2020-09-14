@@ -1,0 +1,70 @@
+site_name: IceData
+site_author: Lucas Goulart Vazquez, Farid Hassainia, and Contributors
+copyright: airctic.com
+theme:
+  name: 'material'
+  palette:
+    scheme: default # default slate
+    primary: 'blue'
+    accent: 'blue'
+
+docs_dir: sources
+repo_url: https://github.com/airctic/IceData
+site_url: https://airctic.github.io/icedata/
+edit_uri: ""
+site_description: 'Documentation for IceData.'
+# google_analytics: ['UA-44322747-3', 'https://airctic.github.io/icedata/']
+markdown_extensions:
+  - codehilite
+  - pymdownx.snippets:
+      base_path: docs
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - admonition
+  - pymdownx.tabbed
+  - attr_list
+extra:
+  manifest: manifest.webmanifest
+extra_css:
+- css/termynal.css
+- css/custom.css
+extra_javascript:
+- https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js
+- js/termynal.js
+- js/custom.js
+- https://cdn.jsdelivr.net/npm/@widgetbot/crate@3
+- js/crate.js
+
+nav:
+  - Home: index.md
+  - Installation: install.md
+  - Tutorials:
+    - Getting Started: getting_started.md
+    - Custom Parser: custom_parser.md
+    - Training a dataset: how_train_dataset.md
+    - Training a VOC dataset: dataset_voc_nb.md
+  - Examples:
+    - Training: examples/training.md
+    - Training a dataset: examples/how_train_dataset_exp.md
+    - Training a VOC dataset: examples/dataset_voc_exp.md
+  - Datasets:
+    - PETS: pets.md
+    - Fridge Objects: fridge.md
+  - API Documentation:
+    - COCO: coco.md
+    - Fridge: 
+      - Data: fridge_data.md
+      - Parsers: fridge_parsers.md
+  - How-To: how-to.md
+  - Contributing Guide: contributing.md
+  - Generating Docs: readme_mkdocs.md
+  - Preferences:
+    - Changing the colors: changing_the_colors.md    
+  - Code of Conduct: code_of_conduct.md
+  - About: about.md

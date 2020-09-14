@@ -1,4 +1,4 @@
-__all__ = ["tf_efficientdet_lite0", "faster_rcnn_resnet50fpn"]
+__all__ = ["tf_efficientdet_lite0", "faster_rcnn_resnet50_fpn"]
 
 from icevision.all import *
 from icedata.utils import load_model_weights_from_url

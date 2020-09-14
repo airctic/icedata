@@ -130,3 +130,7 @@ dmypy.json
 
 # vscode
 .vscode
+
+# mkdocs documentation
+/docs/site
+/docs/sources
