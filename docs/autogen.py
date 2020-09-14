@@ -230,6 +230,11 @@ def generate(dest_dir: Path):
         icedata_dir / "icedata/datasets/pets/README.md", dest_dir / "pets.md"
     )
 
+    # Copy Fridge README
+    shutil.copyfile(
+        icedata_dir / "icedata/datasets/fridge/README.md", dest_dir / "fridge.md"
+    )
+
     # Copy .md examples files to destination examples folder
     # Copy css folder
     copy_tree(str(icedata_dir / "examples"), str(dest_dir / "examples"))
