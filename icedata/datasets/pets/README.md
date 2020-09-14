@@ -1,13 +1,13 @@
-# Name
-[The Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
+## Name
+[**The Oxford-IIIT Pet Dataset**](https://www.robots.ox.ac.uk/~vgg/data/pets/)
 
-# Description
+## Description
 Pet dataset has 37 classes roughly 200 images for each class. The images have a large variations in scale, pose and lighting. All images have an associated ground truth annotation of breed, head ROI, and pixel level trimap segmentation.
 
-# Annotations Examples
+## Annotations Examples
 ![image](images/pet_annotations.jpg)
 
-# Usage 
+## Usage 
 <a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/getting_started.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing how to use this dataset
 
 
@@ -18,7 +18,7 @@ from icevision.all import *
 import icedata
 
 # Load the PETS dataset
-path = icedata.pets.load()
+path = icedata.pets.load_data()
 ```
 
 ## How to parse this dataset
@@ -78,10 +78,10 @@ model = icedata.pets.trained_models.faster_rcnn_resnet50_fpn()
 </annotation>
 ```
 
-# License
+## License
 The dataset is available to download for commercial/research purposes under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/). The copyright remains with the original owners of the images.
 
-# Relevant Publications
+## Relevant Publications
 Cats and Dogs
 
 O. M. Parkhi, A. Vedaldi, A. Zisserman, C. V. Jawahar

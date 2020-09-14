@@ -29,6 +29,7 @@ markdown_extensions:
   - admonition
   - pymdownx.tabbed
   - attr_list
+  - footnotes
 extra:
   manifest: manifest.webmanifest
 extra_css:
@@ -56,6 +57,7 @@ nav:
   - Datasets:
     - PETS: pets.md
     - Fridge Objects: fridge.md
+    - PennFudan: pennfudan.md
   - API Documentation:
     - COCO: coco.md
     - Fridge: 

@@ -1,13 +1,13 @@
-# Name
-Fridge Objects
+## Name 
+**Fridge Objects Dataset**
 
-# Description
+## Description
 Fridge Objects is a toy dataset which consists of 134 images with 4 classes of beverage container {can, carton, milk bottle, water bottle} pictures taken on different backgrounds.
 
-# Annotations Examples
+## Annotations Examples
 ![image](images/fridge_annotations.png)
 
-# Usage 
+## Usage 
 <a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/getting_started.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing how to use this dataset
 
 
@@ -18,7 +18,7 @@ from icevision.all import *
 import icedata
 
 # Load the PETS dataset
-path = icedata.fridge.load()
+path = icedata.fridge.load_data()
 ```
 
 ## How to parse this dataset
@@ -76,8 +76,8 @@ model = icedata.fridge.trained_models.faster_rcnn_resnet50_fpn()
 </annotation>
 ```
 
-# License
+## License
 Unknown
 
-# Relevant Publications
+## Relevant Publications
 Unknown
