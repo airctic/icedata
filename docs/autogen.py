@@ -9,12 +9,16 @@ import keras_autodoc
 import tutobooks
 
 PAGES = {
-    "coco.md": ["icedata.datasets.coco.data.class_map",],
+    "coco.md": [
+        "icedata.datasets.coco.data.class_map",
+    ],
     "fridge_data.md": [
         "icedata.datasets.fridge.data.class_map",
         "icedata.datasets.fridge.data.load_data",
     ],
-    "fridge_parsers.md": ["icedata.datasets.fridge.parsers.parser",],
+    "fridge_parsers.md": [
+        "icedata.datasets.fridge.parsers.parser",
+    ],
 }
 
 
@@ -214,7 +218,8 @@ def generate(dest_dir: Path):
     # Copy static .md files from the docs folder
     shutil.copyfile(icedata_dir / "docs/INSTALL.md", dest_dir / "install.md")
     shutil.copyfile(
-        icedata_dir / "docs/HOW-TO.md", dest_dir / "how-to.md",
+        icedata_dir / "docs/HOW-TO.md",
+        dest_dir / "how-to.md",
     )
     shutil.copyfile(icedata_dir / "docs/ABOUT.md", dest_dir / "about.md")
 
