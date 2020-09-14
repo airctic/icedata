@@ -1,3 +1,11 @@
 import icedata.utils
 
 from icedata.datasets import *
+
+
+try:
+    import importlib.metadata as importlib_metadata
+except ModuleNotFoundError:
+    import importlib_metadata
+
+__version__ = importlib_metadata.version(__version__)
