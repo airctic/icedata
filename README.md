@@ -13,7 +13,7 @@
   
 [![tests](https://github.com/airctic/icedata/workflows/tests/badge.svg?event=push)](https://github.com/airctic/icedata/actions?query=workflow%3Atests)
 [![docs](https://github.com/airctic/icedata/workflows/docs/badge.svg)](https://airctic.github.io/icedata/)
-[![codecov](https://codecov.io/gh/airctic/icevision/branch/master/graph/badge.svg)](https://codecov.io/gh/airctic/icevision)
+[![codecov](https://codecov.io/gh/airctic/icedata/branch/master/graph/badge.svg)](https://codecov.io/gh/airctic/icedata)
 [![black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/airctic/icevision/blob/master/LICENSE)  
 
