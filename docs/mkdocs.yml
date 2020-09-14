@@ -55,6 +55,7 @@ nav:
     - Training a VOC dataset: examples/dataset_voc_exp.md
   - Datasets:
     - PETS: pets.md
+    - Fridge Objects: fridge.md
   - API Documentation:
     - COCO: coco.md
     - Fridge: 
