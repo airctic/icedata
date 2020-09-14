@@ -2,7 +2,7 @@
 [The Oxford-IIIT Pet Dataset](https://www.robots.ox.ac.uk/~vgg/data/pets/)
 
 # Description
-It is a 37 category pet dataset with roughly 200 images for each class. The images have a large variations in scale, pose and lighting. All images have an associated ground truth annotation of breed, head ROI, and pixel level trimap segmentation.
+Pet dataset has 37 classes roughly 200 images for each class. The images have a large variations in scale, pose and lighting. All images have an associated ground truth annotation of breed, head ROI, and pixel level trimap segmentation.
 
 # Annotations Examples
 ![image](images/pet_annotations.jpg)
@@ -41,6 +41,41 @@ show_records(train_records[:6], ncols=3, class_map=class_map, show=True)
 ```python
 class_map = icedata.pets.class_map()
 model = icedata.pets.trained_models.faster_rcnn_resnet50_fpn()
+```
+
+## Dataset folders
+![image](images/pets_folders.png)
+
+## Annotations sample
+```xml
+<annotation>
+    <folder>OXIIIT</folder>
+    <filename>Abyssinian_1.jpg</filename>
+    <source>
+        <database>OXFORD-IIIT Pet Dataset</database>
+        <annotation>OXIIIT</annotation>
+        <image>flickr</image>
+    </source>
+    <size>
+        <width>600</width>
+        <height>400</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    <object>
+        <name>cat</name>
+        <pose>Frontal</pose>
+        <truncated>0</truncated>
+        <occluded>0</occluded>
+        <bndbox>
+            <xmin>333</xmin>
+            <ymin>72</ymin>
+            <xmax>425</xmax>
+            <ymax>158</ymax>
+        </bndbox>
+        <difficult>0</difficult>
+    </object>
+</annotation>
 ```
 
 # License
