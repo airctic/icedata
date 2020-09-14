@@ -8,4 +8,4 @@ try:
 except ModuleNotFoundError:
     import importlib_metadata
 
-__version__ = importlib_metadata.version(__version__)
+__version__ = importlib_metadata.version(__name__)
