@@ -143,7 +143,7 @@ show_records(train_records[:3], ncols=3, class_map=class_map)
 
 **Example:** PETS - a dataset using its custom parser
 
-Please check out the [fridge folder](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge) for more information on how this dataset is structured.
+Please check out the [pets folder](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets) for more information on how this dataset is structured.
 
 ```python
 # Imports
