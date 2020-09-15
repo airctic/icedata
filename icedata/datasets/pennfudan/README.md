@@ -12,7 +12,7 @@ There are 170 images with 345 labeled pedestrians, among which 96 images are tak
 ![image](images/pennfudan_annotations.jpg)
 
 ## Usage 
-<a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/getting_started.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing how to use this dataset
+<a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/mask_rcnn_pennfundan.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing how to use this dataset
 
 
 ## How to load this dataset
@@ -21,7 +21,7 @@ There are 170 images with 345 labeled pedestrians, among which 96 images are tak
 from icevision.all import *
 import icedata
 
-# Load the PETS dataset
+# Load the PennFudan dataset
 path = icedata.penfundan.load_data()
 ```
 

@@ -8,7 +8,7 @@ Fridge Objects is a toy dataset which consists of 134 images with 4 classes of b
 ![image](images/fridge_annotations.png)
 
 ## Usage 
-<a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/getting_started.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing how to use this dataset
+<a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/how_train_dataset.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing how to use this dataset
 
 
 ## How to load this dataset
@@ -17,7 +17,7 @@ Fridge Objects is a toy dataset which consists of 134 images with 4 classes of b
 from icevision.all import *
 import icedata
 
-# Load the PETS dataset
+# Load the Fridge Objects dataset
 path = icedata.fridge.load_data()
 ```
 
