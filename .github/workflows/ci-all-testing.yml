@@ -34,6 +34,7 @@ jobs:
     - name: Setup dependencies
       run: |
         pip install flake8 pytest pytest-cov
+        pip install icevision
         pip install omegaconf effdet@https://github.com/rwightman/efficientdet-pytorch/archive/master.zip#egg=effdet-0.1.4
 
     - name: Poetry install package
