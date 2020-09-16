@@ -29,7 +29,7 @@ jobs:
       if: runner.os == 'Linux'
       run: python -m pip install --upgrade pip
     - name: Setup poetry
-      uses: abatilo/actions-poetry@v2.0.0
+      run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 
     - name: Setup dependencies
       run: |
