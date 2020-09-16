@@ -35,7 +35,7 @@ class_map = icedata.birds.class_map()
 # Randomly split our data into train/valid
 data_splitter = RandomSplitter([0.8, 0.2])
 
-# PETS parser: provided out-of-the-box
+# Birds parser: provided out-of-the-box
 parser = icedata.birds.parser(data_dir=path, class_map=class_map)
 train_records, valid_records = parser.parse(data_splitter)
 

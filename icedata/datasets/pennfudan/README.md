@@ -33,7 +33,7 @@ class_map = icedata.penfundan.class_map()
 # Randomly split our data into train/valid
 data_splitter = RandomSplitter([0.8, 0.2])
 
-# PETS parser: provided out-of-the-box
+# PennFudan parser: provided out-of-the-box
 parser = icedata.penfundan.parser(data_dir=path, class_map=class_map)
 train_records, valid_records = parser.parse(data_splitter)
 
@@ -72,7 +72,7 @@ Pixel mask for object 2 "PASpersonWalking" : "PennFudanPed/PedMasks/FudanPed0000
 ```
 
 ## License
-Unknown
+Please, check out [here](https://www.cis.upenn.edu/~jshi/ped_html/)
 
 ## Relevant Publications
 [^1]: 
