@@ -24,7 +24,7 @@ This dataset contains the data from the PASCAL Visual Object Classes Challenge 2
 from icevision.all import *
 import icedata
 
-# Load the PETS dataset
+# Load the Pascal VOC dataset
 path = icedata.voc.load_data()
 ```
 
@@ -36,7 +36,7 @@ class_map = icedata.voc.class_map()
 # Randomly split our data into train/valid
 data_splitter = RandomSplitter([0.8, 0.2])
 
-# PETS parser: provided out-of-the-box
+# VOC parser: provided out-of-the-box
 parser = icedata.voc.parser(data_dir=path, class_map=class_map)
 train_records, valid_records = parser.parse(data_splitter)
 
@@ -124,8 +124,6 @@ model = icedata.voc.trained_models.faster_rcnn_resnet50_fpn()
 Please check out [here](http://host.robots.ox.ac.uk/pascal/VOC/)
 
 ## Relevant Publications
-The PASCAL Visual Object Classes Challenge 2012 (VOC2012) Results
+[The PASCAL Visual Object Classes Challenge 2012 (VOC2012) Results](http://www.pascal-network.org/challenges/VOC/voc2012/workshop/index.html)
 
 Everingham, M. and Van~Gool, L. and Williams, C. K. I. and Winn, J. and Zisserman, A.
-
-http://www.pascal-network.org/challenges/VOC/voc2012/workshop/index.html
