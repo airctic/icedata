@@ -29,6 +29,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install poetry flake8 pytest-cov
+        poetry add pytest-cov
 
     - name: Lint with flake8
       run: |
@@ -39,7 +40,6 @@ jobs:
 
     - name: Install package
       run: |
-        pip install omegaconf effdet@https://github.com/rwightman/efficientdet-pytorch/archive/master.zip#egg=effdet-0.1.4
         poetry install
 
     - name: Run tests
