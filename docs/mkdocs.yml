@@ -51,15 +51,19 @@ nav:
     - Training a dataset: how_train_dataset.md
     - Training a VOC dataset: dataset_voc_nb.md
   - Examples:
-    - Training: examples/training.md
-    - Training a dataset: examples/how_train_dataset_exp.md
-    - Training a VOC dataset: examples/dataset_voc_exp.md
+    - Birds: examples/birds_exp.md
+    - COCO: examples/coco_exp.md
+    - Fridge Objects: examples/fridge_exp.md
+    - PennFudan: examples/pennfudan_exp.md
+    - PETS: examples/pets_exp.md
+    - Pascal VOC 2012: examples/voc_exp.md
   - Datasets:
+    - Birds: birds.md
     - COCO: coco.md
-    - VOC: voc.md
-    - PETS: pets.md
     - Fridge Objects: fridge.md
     - PennFudan: pennfudan.md
+    - PETS: pets.md
+    - Pascal VOC 2012: voc.md
   - API Documentation:
     - COCO: 
       - Data: coco_data.md

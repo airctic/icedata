@@ -223,6 +223,11 @@ def generate(dest_dir: Path):
         dest_dir / "changing_the_colors.md",
     )
 
+    # Copy Birds README
+    shutil.copyfile(
+        icedata_dir / "icedata/datasets/birds/README.md", dest_dir / "birds.md"
+    )
+
     # Copy COCO README
     shutil.copyfile(
         icedata_dir / "icedata/datasets/coco/README.md", dest_dir / "coco.md"
@@ -247,7 +252,6 @@ def generate(dest_dir: Path):
     )
 
     # Copy .md examples files to destination examples folder
-    # Copy css folder
     copy_tree(str(icedata_dir / "examples"), str(dest_dir / "examples"))
 
     # Copy images folder from the template folder to the destination folder
