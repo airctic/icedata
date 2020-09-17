@@ -71,17 +71,17 @@ The `Datasets` class is designed to simplify loading and parsing a wide range of
 
 - Out-of-the-box parsers convert different dataset annotation formats into the unified IceVision Data Format
 
-IceData provides several ready-to-use datasets that use both standard annotation formats such as COCO and VOC as well as custom annotation formats such [WheatParser](https://airctic.github.io/icevision/custom_parser/) used in the [Kaggle Global Wheat Competition](https://www.kaggle.com/c/global-wheat-detection)
+IceData provides several ready-to-use datasets that use both standard annotation formats such as COCO and VOC as well as other annotation formats such [WheatParser](https://airctic.github.io/icevision/custom_parser/) used in the [Kaggle Global Wheat Competition](https://www.kaggle.com/c/global-wheat-detection)
 
 ## Usage
 
-Object detection datasets use different annotation formats (COCO, VOC, and custom formats). IceVision offers different options to parse each one of those formats.
+Object detection datasets use different annotation formats (COCO, VOC, and others). IceVision offers different options to parse each one of those formats.
 
 
 ## Case 1: COCO and VOC compatible datasets
 
-### **Option 1: Using icevision predefined VOC parser**
-**Example:** Raccoon - dataset using the predefined VOC parser
+### **Option 1: Use the icevision COCO or VOC parser**
+**Example:** Raccoon - dataset using the VOC parser
 
 ```python
 # Imports
@@ -95,15 +95,15 @@ data_dir = Path("raccoon_dataset")
 images_dir = data_dir / "images"
 annotations_dir = data_dir / "annotations"
 
-# Define class_map
+# Define the class_map
 class_map = ClassMap(["raccoon"])
 
-# Parser: Use icevision predefined VOC parser
+# Create a parser for dataset using the predefined icevision VOC parser
 parser = parsers.voc(
     annotations_dir=annotations_dir, images_dir=images_dir, class_map=class_map
 )
 
-# train and validation records
+# Parse the annotations to create the train and validation records
 train_records, valid_records = parser.parse()
 show_records(train_records[:3], ncols=3, class_map=class_map)
 ```
@@ -116,9 +116,9 @@ show_records(train_records[:3], ncols=3, class_map=class_map)
     )**
 
 
-### **Option 2: Creating both data, and parsers files for the VOC or COCO parsers**
+### **Option 2: Use the parser associated with the dataset**
 
-**Example:** Fridge Objects - dataset redefining its VOC parser
+**Example:** Fridge Objects - dataset with its (VOC) parser
 
 Please check out the [fridge folder](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge) for more information on how this dataset is structured.
 
@@ -133,51 +133,22 @@ data_dir = icedata.fridge.load()
 # Get the class_map
 class_map = icedata.fridge.class_map()
 
-# VOC parser: provided out-of-the-box
+# Parse the annotations
 parser = icedata.fridge.parser(data_dir, class_map)
 train_records, valid_records = parser.parse()
 
-# shows images with corresponding labels and boxes
+# Show images with their boxes and labels
 show_records(train_records[:3], ncols=3, class_map=class_map)
 ```
 
 !!! info "Note" 
-    Notice how we use a new defined [icedata.fridge.parser()](https://github.com/airctic/icedata/blob/master/icedata/datasets/fridge/parsers.py) function:
+    Notice how we use the parser associated with the fridge dataset [icedata.fridge.parser()](https://github.com/airctic/icedata/blob/master/icedata/datasets/fridge/parsers.py):
     
     **parser = icedata.fridge.parser(data_dir, class_map)**
 
 
-## Case 2: Dataset using a custom parser
-
-**Example:** PETS - a dataset using its custom parser
-
-Please check out the [pets folder](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets) for more information on how this dataset is structured.
-
-```python
-# Imports
-from icevision.all import *
-import icedata
-
-# Load the PETS dataset
-path = icedata.pets.load()
-
-# Get the class_map
-class_map = icedata.pets.class_map()
-
-# PETS parser: provided out-of-the-box
-parser = icedata.pets.parser(data_dir=path, class_map=class_map)
-train_records, valid_records = parser.parse()
-
-# shows images with corresponding labels and boxes
-show_records(train_records[:6], ncols=3, class_map=class_map, show=True)
-
-```
-
-!!! info "Note 1" 
-    The datasets interface will always have at least the following functions: [load](https://github.com/airctic/icedata/blob/master/icedata/datasets/pets/data.py), [class_map](https://github.com/airctic/icedata/blob/master/icedata/datasets/pets/data.py), and [parser](https://github.com/airctic/icedata/blob/master/icedata/datasets/pets/parsers.py). You might also have noticed the strong similarity between the 2 examples listed here above. Indeed, only the names of the datasets differ, the rest of the code is the same: That highlights how we both simpified and standardized the process of loading and parsing a given dataset.
-
-!!! info "Note 2" 
-    If you would like to create your own dataset, we strongly recommend you following the same file structure, and naming found in the different examples such as the [Fridge Objects dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge), and the [PETS dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets)    
+!!! info "Note " 
+    If you would like to create your own dataset, we strongly recommend you following the file structure and naming conventions used in the  examples such as the [Fridge Objects dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge), and the [PETS dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets).
 
 ![image](https://airctic.github.io/icedata/images/datasets-folder-structure.png)
 
