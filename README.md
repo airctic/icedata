@@ -30,6 +30,8 @@
 
 [![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/0)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/0)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/1)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/1)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/2)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/2)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/3)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/3)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/4)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/4)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/5)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/5)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/6)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/6)[![](https://sourcerer.io/fame/lgvaz/airctic/icedata/images/7)](https://sourcerer.io/fame/lgvaz/airctic/icedata/links/7)
 
+![](images/docs.png) [ **Documentation**](https://airctic.github.io/icedata/)
+
 ## Installation
 
 ```bash
@@ -40,6 +42,20 @@ For more installation options, check our [docs](https://airctic.github.io/icevda
 
 **Important:** We currently only support Linux/MacOS.
 <!-- Not included in docs - end -->
+
+## Why IceData?
+
+- IceData is Datasets Hub for our [IceVision](https://github.com/airctic/icevision) Framework
+
+- Uses the IceVision Unified Data API with out-of-the-box support for common annotation formats (COCO, VOC, etc.)
+
+- It hosts community maintained parsers and custom datasets 
+
+- Provides a nice overview of each hosted dataset including a description, an annotation example, and some other relevant information
+
+- Make end-to-end training using thoses datasets a very straightforward process through code reuse thanks to its unified API
+
+- Enables practioners to get moving with object detection technology quickly
 
 
 
@@ -92,8 +108,7 @@ parser = parsers.voc(
 )
 
 # train and validation records
-data_splitter = RandomSplitter([0.8, 0.2])
-train_records, valid_records = parser.parse(data_splitter)
+train_records, valid_records = parser.parse()
 show_records(train_records[:3], ncols=3, class_map=class_map)
 ```
 
@@ -122,12 +137,9 @@ data_dir = icedata.fridge.load()
 # Get the class_map, a utility that maps from number IDs to classs names
 class_map = icedata.fridge.class_map()
 
-# Randomly split our data into train/valid
-data_splitter = RandomSplitter([0.8, 0.2])
-
 # VOC parser: provided out-of-the-box
 parser = icedata.fridge.parser(data_dir, class_map)
-train_records, valid_records = parser.parse(data_splitter)
+train_records, valid_records = parser.parse()
 
 # shows images with corresponding labels and boxes
 show_records(train_records[:3], ncols=3, class_map=class_map)
@@ -156,12 +168,9 @@ path = icedata.pets.load()
 # Get the class_map, a utility that maps from number IDs to classs names
 class_map = icedata.pets.class_map()
 
-# Randomly split our data into train/valid
-data_splitter = RandomSplitter([0.8, 0.2])
-
 # PETS parser: provided out-of-the-box
 parser = icedata.pets.parser(data_dir=path, class_map=class_map)
-train_records, valid_records = parser.parse(data_splitter)
+train_records, valid_records = parser.parse()
 
 # shows images with corresponding labels and boxes
 show_records(train_records[:6], ncols=3, class_map=class_map, show=True)
