@@ -78,9 +78,10 @@ IceData provides several ready-to-use datasets that use both standard annotation
 Object detection datasets use different annotation formats (COCO, VOC, and others). IceVision offers different options to parse each one of those formats.
 
 
-## Case 1: COCO and VOC compatible datasets
+### COCO and VOC compatible datasets
+For COCO or VOC compatible datasets - especially ones that are not include in IceData - it is easiest to use the IceData
+COCO or VOC parser.
 
-### **Option 1: Use the icevision COCO or VOC parser**
 **Example:** Raccoon - dataset using the VOC parser
 
 ```python
@@ -116,9 +117,10 @@ show_records(train_records[:3], ncols=3, class_map=class_map)
     )**
 
 
-### **Option 2: Use the parser associated with the dataset**
+### Datasets included in IceData
+Datasets included in IceData will always have their own parser. It can be invoked with `icedata.`datasetname`.parser(...)`.
 
-**Example:** Fridge Objects - dataset with its (VOC) parser
+**Example:** The IceData Fridge dataset
 
 Please check out the [fridge folder](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge) for more information on how this dataset is structured.
 
@@ -147,8 +149,9 @@ show_records(train_records[:3], ncols=3, class_map=class_map)
     **parser = icedata.fridge.parser(data_dir, class_map)**
 
 
-!!! info "Note " 
-    If you would like to create your own dataset, we strongly recommend you following the file structure and naming conventions used in the  examples such as the [Fridge Objects dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge), and the [PETS dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets).
+### Datasets with a new annotation format
+
+Sometimes, you will need to define a new annotation format for you dataset. Additional information can be found in the [documentation](https://airctic.com/custom_parser/). In this case, we strongly recommend you following the file structure and naming conventions used in the  examples such as the [Fridge dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge), or the [PETS dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets).
 
 ![image](https://airctic.github.io/icedata/images/datasets-folder-structure.png)
 
