@@ -6,7 +6,7 @@ def test_parser(data_dir):
     class_map = icedata.fridge.class_map()
     parser = icedata.fridge.parser(data_dir, class_map=class_map)
 
-    records = parser.parse()[0]
+    records = parser.parse(data_splitter=SingleSplitSplitter())[0]
     assert len(records) == 5
     record = records[0]
 
