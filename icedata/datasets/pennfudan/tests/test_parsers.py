@@ -6,7 +6,7 @@ def test_parser(data_dir):
     class_map = icedata.pennfudan.class_map()
     parser = icedata.pennfudan.parser(data_dir)
 
-    records = parser.parse()[0]
+    records = parser.parse(data_splitter=SingleSplitSplitter())[0]
     assert len(records) == 5
     record = records[0]
 
