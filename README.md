@@ -69,20 +69,20 @@ The `Datasets` class is designed to simplify loading and parsing a wide range of
 
 - Transparent and pythonic API
 
-- Out-of-the-box parsers convert different dataset annotation formats into the unified IceVision Data Format
+- Out-of-the-box parsers convert common dataset annotation formats into the unified IceVision Data Format
 
-IceData provides several ready-to-use datasets that use both standard annotation formats such as COCO and VOC as well as other annotation formats such [WheatParser](https://airctic.github.io/icevision/custom_parser/) used in the [Kaggle Global Wheat Competition](https://www.kaggle.com/c/global-wheat-detection)
+IceData provides several ready-to-use datasets that use both common annotation formats such as COCO and VOC as well as other annotation formats such [WheatParser](https://airctic.github.io/icevision/custom_parser/) used in the [Kaggle Global Wheat Competition](https://www.kaggle.com/c/global-wheat-detection)
 
 ## Usage
 
-Object detection datasets use different annotation formats (COCO, VOC, and others). IceVision offers different options to parse each one of those formats.
+Object detection datasets use multiple annotation formats (COCO, VOC, and others). IceVision makes it easy to work across all of them with its easy-to-use and extend parsers.
 
 
 ### COCO and VOC compatible datasets
 For COCO or VOC compatible datasets - especially ones that are not include in IceData - it is easiest to use the IceData
 COCO or VOC parser.
 
-**Example:** Raccoon - dataset using the VOC parser
+**Example:** Raccoon - a dataset using the VOC parser
 
 ```python
 # Imports
@@ -118,7 +118,7 @@ show_records(train_records[:3], ncols=3, class_map=class_map)
 
 
 ### Datasets included in IceData
-Datasets included in IceData will always have their own parser. It can be invoked with `icedata.`datasetname`.parser(...)`.
+Datasets included in IceData always have their own parser. It can be invoked with `icedata.`datasetname`.parser(...)`.
 
 **Example:** The IceData Fridge dataset
 
