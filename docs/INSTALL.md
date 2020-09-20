@@ -14,18 +14,7 @@ $ pip install icedata
 </div>
 
 
-### **Option 2:** Installing a non-editable package from GitHub **[Recommended for Active Users]**
-
-To install the icedata package from its GitHub repo, run the command here below. This option can be used in Google Colab,
-for example, where you might install the icedata latest version (from the `master` branch)
-
-<div class="termy">
-```console
-$ pip install git+git://github.com/airctic/icedata.git#egg=icedata --upgrade
-```
-</div>
-
-### **Option 3:** Installing an editable package from GitHub **[For Developers]**
+### **Option 2:** Installing an editable package locally **[For Developers]**
 
 !!! info "Note"  
     This method is used by developers who are usually either:
@@ -34,13 +23,32 @@ $ pip install git+git://github.com/airctic/icedata.git#egg=icedata --upgrade
 
     - creating their own extensions, and making sure that their source code stay in sync with the `icedata` latest version.
 
-All we have to do is to follow these 3 simple steps by running the following commands:
+First, install Poetry by following the instructions [here](https://python-poetry.org/docs/#installation).
 
+Update poetry to the latest preview:
+<div class="termy">
+```console
+$ poetry self update --preview
+```
+</div>
+
+Then, clone the repo and install the package:
 <div class="termy">
 ```console
 $ git clone --depth=1 https://github.com/airctic/icedata.git
 $ cd icedata
-$ pip install .
+$ poetry install
+```
+
+
+### **Option 3:** Installing a non-editable package from GitHub **[Recommended for Active Users]**
+
+To install the icedata package from its GitHub repo, run the command here below. This option can be used in Google Colab,
+for example, where you might install the icedata latest version (from the `master` branch)
+
+<div class="termy">
+```console
+$ pip install git+git://github.com/airctic/icedata.git --upgrade
 ```
 </div>
 
