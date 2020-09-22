@@ -1,5 +1,6 @@
 import icedata.utils
 
+from icedata.utils import *
 from icedata.datasets import *
 
 
