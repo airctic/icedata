@@ -24,6 +24,5 @@ def _load_faster_rcnn(backbone, weights_url):
 
 
 def faster_rcnn_resnet50_fpn():
-    # weights_url = "https://github.com/airctic/icedata/releases/download/m1/pets_faster_resnetfpn50.zip"
-    weights_url = "https://github.com/airctic/model_zoo/releases/download/pets_faster_resnet50fpn/pets_faster_resnetfpn50.zip"
+    weights_url = "https://github.com/airctic/model_zoo/releases/download/m3/pets_faster_resnetfpn50.zip"
     return _load_faster_rcnn(None, weights_url)
