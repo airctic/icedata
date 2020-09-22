@@ -158,7 +158,7 @@ Sometimes, you will need to define a new annotation format for you dataset. Addi
 
 # Disclaimer
 
-Inspired from the excellent HuggingFace [nlp](https://github.com/huggingface/nlp) project, icedata is a utility library that downloads and prepares computer vision datasets. We do not host or distribute these datasets, vouch for their quality or fairness, or claim that you have a license to use the dataset. It is your responsibility to determine whether you have permission to use the dataset under the its license.
+Inspired from the excellent HuggingFace [Datasets](https://github.com/huggingface/datasets) project, icedata is a utility library that downloads and prepares computer vision datasets. We do not host or distribute these datasets, vouch for their quality or fairness, or claim that you have a license to use the dataset. It is your responsibility to determine whether you have permission to use the dataset under the its license.
 
 If you are a dataset owner and wish to update any of the information in IceData (description, citation, etc.), or do not want your dataset to be included, please get in touch through a [GitHub issue](https://github.com/airctic/icedata/issues). Thanks for your contribution to the ML community!
 
