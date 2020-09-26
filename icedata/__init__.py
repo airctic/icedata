@@ -1,4 +1,5 @@
 import icedata.utils
+import icedata.template
 
 from icedata.utils import *
 from icedata.datasets import *
