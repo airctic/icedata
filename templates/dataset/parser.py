@@ -1,10 +1,8 @@
 __all__ = ["parser"]
 
-from icevision.all import *
-
-# from icevision.imports import *
-# from icevision.core import *
-# from icevision import parsers
+from icevision.imports import *
+from icevision.core import *
+from icevision import parsers
 
 
 def parser(data_dir: Path) -> parsers.ParserInterface:
