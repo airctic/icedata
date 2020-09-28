@@ -18,7 +18,12 @@ def test_generate_dataset():
     # check files
     assert new_dataset_path.exists()
     filenames = [o.name for o in get_files(new_dataset_path)]
-    assert set(filenames) == {"data.py", "parser.py", "trained_models.py"}
+    assert set(filenames) == {
+        "__init__.py",
+        "data.py",
+        "parser.py",
+        "trained_models.py",
+    }
 
     # check init
     init_lines = init_filepath.readlines()
