@@ -20,3 +20,12 @@ def generate_dataset(dataset_name: str):
         new_filepath = datasets_dir / dataset_name / template_file.name
         with open(str(new_filepath), "w") as new_file:
             new_file.write(text)
+
+    # append to init
+    import_statement = f"from icedata.datasets import {dataset_name}\n"
+    init_filepath = datasets_dir / "__init__.py"
+    init_lines = init_filepath.readlines()
+    init_lines.append(import_statement)
+
+    with open(init_filepath, "w") as init_file:
+        init_file.write("".join(init_lines))
