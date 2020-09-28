@@ -1,4 +1,4 @@
-__all__ = ["NUM_CLASSES", "class_map", "load_data", "load"]
+__all__ = ["NUM_CLASSES", "class_map", "load_data"]
 
 from icevision.imports import *
 from icevision.core import *
