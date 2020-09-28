@@ -16,9 +16,9 @@ def load_data(
     url: Union[str, Path], name: Union[str, Path], force_download: bool = False
 ) -> Path:
     save_dir = get_data_dir() / name
-    save_dir.mkdir(exist_ok=True)
 
     if not save_dir.exists() or force_download:
+        save_dir.mkdir(exist_ok=True)
         save_path = save_dir / Path(url).name
         download_and_extract(url=url, save_path=save_path)
 
