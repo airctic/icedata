@@ -8,6 +8,7 @@ from icevision.utils import *
 # IMPLEMENT: Number of classes plus 1 for background
 NUM_CLASSES = 0 + 1
 
+
 def class_map(background: int = 0) -> ClassMap:
     """Creates the `ClassMap` specific for this dataset.
 
@@ -21,6 +22,5 @@ def class_map(background: int = 0) -> ClassMap:
 
 
 def load_data(force_download: bool = False):
-    """Loads the data from disk or download from the internet if necessary.
-    """
+    """Loads the data from disk or download from the internet if necessary."""
     raise NotImplementedError
