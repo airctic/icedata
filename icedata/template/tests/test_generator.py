@@ -17,12 +17,18 @@ def test_generate_dataset():
 
     # check files
     assert new_dataset_path.exists()
-    filenames = [o.name for o in get_files(new_dataset_path)]
+    filenames = [str(o.relative_to(datasets_dir)) for o in get_files(new_dataset_path)]
     assert set(filenames) == {
-        "__init__.py",
-        "data.py",
-        "parser.py",
-        "trained_models.py",
+        "test_ds/__init__.py",
+        "test_ds/data.py",
+        "test_ds/parser.py",
+        "test_ds/trained_models.py",
+        "test_ds/tests/__init__.py",
+        "test_ds/tests/test_data.py",
+        "test_ds/tests/test_trained_models.py",
+        "test_ds/tests/test_parser.py",
+        "test_ds/tests/conftest.py",
+        "test_ds/sample_data/README.md",
     }
 
     # check init
@@ -32,6 +38,5 @@ def test_generate_dataset():
 
     # revert changes
     shutil.rmtree(new_dataset_path)
-
     with open(init_filepath, "w") as init_file:
         init_file.write("".join(original_init_lines))
