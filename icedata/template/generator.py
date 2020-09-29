@@ -5,6 +5,7 @@ from icevision.utils import *
 
 
 def generate_dataset(dataset_name: str):
+    # TODO: Check if dataset already exists
     this_path = Path(__file__).absolute()
     templates_dir = this_path.parent.parent.parent / "templates/dataset"
     datasets_dir = this_path.parent.parent / "datasets"
@@ -12,12 +13,17 @@ def generate_dataset(dataset_name: str):
     new_dataset_dir = datasets_dir / dataset_name
     new_dataset_dir.mkdir(exist_ok=True)
 
-    template_files = get_files(templates_dir, extensions=[".py"])
+    template_files = get_files(templates_dir, extensions=[".py", ".md"])
     for template_file in template_files:
         text = template_file.read()
-        # do stuff with the file
 
-        new_filepath = datasets_dir / dataset_name / template_file.name
+        # do stuff with the file
+        text = re.sub(r"TK_DATASET_NAME", dataset_name, text)
+
+        new_filepath = (
+            datasets_dir / dataset_name / template_file.relative_to(templates_dir)
+        )
+        new_filepath.parent.mkdir(exist_ok=True)
         with open(str(new_filepath), "w") as new_file:
             new_file.write(text)
 

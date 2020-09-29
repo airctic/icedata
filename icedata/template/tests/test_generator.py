@@ -23,6 +23,7 @@ def test_generate_dataset():
         "data.py",
         "parser.py",
         "trained_models.py",
+        "test_data.py",
     }
 
     # check init
@@ -32,6 +33,5 @@ def test_generate_dataset():
 
     # revert changes
     shutil.rmtree(new_dataset_path)
-
     with open(init_filepath, "w") as init_file:
         init_file.write("".join(original_init_lines))
