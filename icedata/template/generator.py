@@ -5,13 +5,17 @@ from icevision.utils import *
 
 
 def generate_dataset(dataset_name: str):
-    # TODO: Check if dataset already exists
     this_path = Path(__file__).absolute()
     templates_dir = this_path.parent.parent.parent / "templates/dataset"
     datasets_dir = this_path.parent.parent / "datasets"
 
     new_dataset_dir = datasets_dir / dataset_name
-    new_dataset_dir.mkdir(exist_ok=True)
+    try:
+        new_dataset_dir.mkdir()
+    except FileExistsError:
+        raise FileExistsError(
+            f"A dataset named {dataset_name} already exists, try a different name"
+        )
 
     template_files = get_files(templates_dir, extensions=[".py", ".md"])
     for template_file in template_files:
