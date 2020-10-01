@@ -70,6 +70,8 @@ nav:
     - Fridge: 
       - Data: fridge_data.md
       - Parsers: fridge_parsers.md
+  - Parsing Cheatsheet: parsing_cheatsheet.md
+  - Datasets Tools: datasets_tools.md
   - How-To: how-to.md
   - Contributing Guide: contributing.md
   - Generating Docs: readme_mkdocs.md
