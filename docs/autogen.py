@@ -210,9 +210,10 @@ def generate(dest_dir: Path):
     # Copy static .md files from the root folder
     shutil.copyfile(icedata_dir / "CONTRIBUTING.md", dest_dir / "contributing.md")
     shutil.copyfile(icedata_dir / "CODE_OF_CONDUCT.md", dest_dir / "code_of_conduct.md")
-    shutil.copyfile(icedata_dir / "PARSING_CHEATSHEET.md", dest_dir / "parsing_cheatsheet.md")
+    shutil.copyfile(
+        icedata_dir / "PARSING_CHEATSHEET.md", dest_dir / "parsing_cheatsheet.md"
+    )
     shutil.copyfile(icedata_dir / "DATASETS_TOOLS.md", dest_dir / "datasets_tools.md")
-
 
     # Copy static .md files from the docs folder
     shutil.copyfile(icedata_dir / "docs/INSTALL.md", dest_dir / "install.md")
