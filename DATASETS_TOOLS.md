@@ -1,12 +1,6 @@
 # Datasets Tools
-The goal is to create some resources that will help both beginners and advanced users to easily find some resources that will help them in creating or processing their datasets. This can be done through sharing:
+The goal is to gather some useful resources that will help both beginners and advanced users creating and/or processing their datasets. 
 
-* Datasets repositories
-* Datasets creation tools
-* Useful tools such annotations tools
-* Code snippets 
-* Tips & tricks, and recipes
-* Best practices
 
 ## Datasets repositories
 
@@ -28,8 +22,8 @@ The goal is to create some resources that will help both beginners and advanced 
 
 ### Image Classification
 
-* download any of the 19,794 classes in a common labeled folder
-* exploit tens of possible commands to select only the desired images (ex. like only test images)
+* download any classes in a common labeled folder
+* exploit tens of possible commands to select only the desired images
 
 ## Useful tools such annotations tools
 
