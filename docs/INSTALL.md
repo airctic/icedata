@@ -48,7 +48,7 @@ for example, where you might install the icedata latest version (from the `maste
 
 <div class="termy">
 ```console
-$ pip install jsonschema --upgrade # Without updating the jsonschema pacakge installing raises an error
+$ pip install jsonschema --upgrade # Without updating the jsonschema package installing raises an error
 $ pip install git+git://github.com/airctic/icedata.git --upgrade
 ```
 </div>
