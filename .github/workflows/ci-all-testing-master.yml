@@ -1,4 +1,4 @@
-name: tests-icevision-master
+name: tests-master
 
 on:
   push:
@@ -22,26 +22,20 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Setup dependencies
+    - name: Install package
       run: |
-        python -m pip install --upgrade pip
-        pip install poetry --pre
-        poetry add pytest-cov flake8
+        pip install -e .
+        pip install git+git://github.com/lgvaz/mantisshrimp.git@setuptools#egg=icevision[all] --upgrade
 
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-
-    - name: Install package
-      run: |
-        poetry install
-        pip install git+git://github.com/airctic/icevision.git#egg=icevision[all] --upgrade
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
     - name: Run tests
-      run: poetry run pytest icedata -m "not cuda" --cov=icedata --cov-report=xml
+      run: pytest tests -m "not cuda" --cov=icedata --cov-report=xml
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
