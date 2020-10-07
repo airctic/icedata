@@ -19,7 +19,7 @@ jobs:
           python-version: 3.7
 
       - name: Install package
-        run: pip install -e .
+        run: pip install -e ".[dev]"
 
       - name: Build the docs
         run:  |
