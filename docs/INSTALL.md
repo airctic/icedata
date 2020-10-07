@@ -28,7 +28,7 @@ Clone the repo and install the package:
 ```console
 $ git clone --depth=1 https://github.com/airctic/icedata.git
 $ cd icedata
-$ pip install -e ".[all,dev]"
+$ pip install -e ".[dev]"
 ```
 
 
