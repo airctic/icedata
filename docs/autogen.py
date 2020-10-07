@@ -14,7 +14,7 @@ PAGES = {
         "icedata.datasets.fridge.data.class_map",
         "icedata.datasets.fridge.data.load_data",
     ],
-    "fridge_parsers.md": ["icedata.datasets.fridge.parsers.parser"],
+    "fridge_parser.md": ["icedata.datasets.fridge.parser.parser"],
 }
 
 
