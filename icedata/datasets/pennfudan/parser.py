@@ -21,7 +21,7 @@ class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixi
 
     def prepare(self, o):
         self._imageid = getattr(self, "_imageid", 0) + 1
-        self.lines = L(o.read().split("\n"))
+        self.lines = L(o.read_text().split("\n"))
         self._bboxes = []
 
         for line in self.lines:

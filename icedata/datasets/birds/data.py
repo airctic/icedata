@@ -28,5 +28,5 @@ def load(force_download: bool = False) -> Path:
 
 def class_map(data_dir: Union[str, Path], background: Optional[int] = 0) -> ClassMap:
     classes_filepath = Path(data_dir) / "lists/classes.txt"
-    classes = classes_filepath.read().splitlines()
+    classes = classes_filepath.read_text().splitlines()
     return ClassMap(classes, background=background)
