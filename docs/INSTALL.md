@@ -23,21 +23,12 @@ $ pip install icedata
 
     - creating their own extensions, and making sure that their source code stay in sync with the `icedata` latest version.
 
-First, install Poetry by following the instructions [here](https://python-poetry.org/docs/#installation).
-
-Update poetry to the latest preview:
-<div class="termy">
-```console
-$ poetry self update --preview
-```
-</div>
-
-Then, clone the repo and install the package:
+Clone the repo and install the package:
 <div class="termy">
 ```console
 $ git clone --depth=1 https://github.com/airctic/icedata.git
 $ cd icedata
-$ poetry install
+$ pip install -e ".[dev]"
 ```
 
 
@@ -48,7 +39,6 @@ for example, where you might install the icedata latest version (from the `maste
 
 <div class="termy">
 ```console
-$ pip install jsonschema --upgrade # Without updating the jsonschema package installing raises an error
 $ pip install git+git://github.com/airctic/icedata.git --upgrade
 ```
 </div>
