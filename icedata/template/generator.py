@@ -11,7 +11,9 @@ def generate_dataset(dataset_name: str):
 
     new_dataset_dir = datasets_dir / dataset_name
     try:
+        print(f"\n- Trying to create {new_dataset_dir} folder\n")
         new_dataset_dir.mkdir()
+        print(f"- {new_dataset_dir} folder created\n")
     except FileExistsError:
         raise FileExistsError(
             f"A dataset named {dataset_name} already exists, try a different name"
@@ -30,6 +32,7 @@ def generate_dataset(dataset_name: str):
         new_filepath.parent.mkdir(exist_ok=True)
         with open(str(new_filepath), "w") as new_file:
             new_file.write(text)
+            print(f"   - {str(new_filepath.name)} file created\n")
 
     # append to init
     import_statement = f"from icedata.datasets import {dataset_name}\n"
@@ -39,3 +42,5 @@ def generate_dataset(dataset_name: str):
 
     with open(init_filepath, "w") as init_file:
         init_file.write("".join(init_lines))
+
+generate_dataset("bccd")
