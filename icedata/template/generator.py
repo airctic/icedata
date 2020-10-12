@@ -19,7 +19,7 @@ def generate_dataset(dataset_name: str):
 
     template_files = get_files(templates_dir, extensions=[".py", ".md"])
     for template_file in template_files:
-        text = template_file.read()
+        text = template_file.read_text()
 
         # do stuff with the file
         text = re.sub(r"TK_DATASET_NAME", dataset_name, text)
