@@ -32,7 +32,7 @@ def generate_dataset(dataset_name: str):
         new_filepath.parent.mkdir(exist_ok=True)
         with open(str(new_filepath), "w") as new_file:
             new_file.write(text)
-            print(f"   - {str(new_filepath.name)} file created\n")
+            print(f"   - {new_filepath.relative_to(datasets_dir)} file created\n")
 
     # append to init
     import_statement = f"from icedata.datasets import {dataset_name}\n"
