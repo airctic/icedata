@@ -23,6 +23,7 @@ def test_generate_dataset():
         "test_ds/data.py",
         "test_ds/parser.py",
         "test_ds/trained_models.py",
+        "test_ds/README.md",
         "test_ds/tests/__init__.py",
         "test_ds/tests/test_data.py",
         "test_ds/tests/test_trained_models.py",
