@@ -42,5 +42,3 @@ def generate_dataset(dataset_name: str):
 
     with open(init_filepath, "w") as init_file:
         init_file.write("".join(init_lines))
-
-generate_dataset("bccd")
