@@ -13,13 +13,18 @@ def load_model_weights_from_url(
 
 
 def load_data(
-    url: Union[str, Path], name: Union[str, Path], force_download: bool = False
+    url: Union[str, Path],
+    name: Union[str, Path],
+    force_download: bool = False,
+    dest_dir: Union[str, Path] = None,
 ) -> Path:
-    save_dir = get_data_dir() / name
+    if not dest_dir:
+        dest_dir = get_data_dir()
 
-    if not save_dir.exists() or force_download:
-        save_dir.mkdir(exist_ok=True)
-        save_path = save_dir / Path(url).name
+    dest_dir = Path(dest_dir) / name
+    if not dest_dir.exists() or force_download:
+        dest_dir.mkdir(exist_ok=True, parents=True)
+        save_path = dest_dir / Path(url).name
         download_and_extract(url=url, save_path=save_path)
 
-    return save_dir
+    return dest_dir
