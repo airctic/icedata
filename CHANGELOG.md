@@ -5,15 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+### Deleted
+
+## [0.1.0]
+
 ### IMPORTANT
 - **Switched from poetry to setuptools**
 
 ## Added
 - Dataset template
-
-## Changed
-
-## Deleted
 
 ## [0.0.3]
 
