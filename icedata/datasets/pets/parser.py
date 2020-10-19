@@ -6,15 +6,24 @@ from icevision import parsers
 
 
 def parser(data_dir: Path, class_map: ClassMap, mask=False):
-    parser = PetsXmlParser(
-        annotations_dir=data_dir / "annotations/xmls",
-        images_dir=data_dir / "images",
-        class_map=class_map,
-    )
+    annotations_dir = data_dir / "annotations/xmls"
+    images_dir = data_dir / "images"
+    masks_dir = data_dir / "annotations/trimaps"
 
-    if mask:
-        mask_parser = PetsMaskParser(data_dir / "annotations/trimaps")
-        parser = parsers.CombinedParser(parser, mask_parser)
+    if not mask:
+        parser = PetsXmlParser(
+            annotations_dir=annotations_dir,
+            images_dir=images_dir,
+            class_map=class_map,
+        )
+
+    else:
+        parser = PetsMaskParser(
+            annotations_dir=annotations_dir,
+            images_dir=images_dir,
+            masks_dir=masks_dir,
+            class_map=class_map,
+        )
 
     return parser
 
@@ -30,9 +39,10 @@ class PetsXmlParser(parsers.VocXmlParser):
         return [class_id] * num_objs
 
 
-class PetsMaskParser(parsers.VocMaskParser):
+class PetsMaskParser(parsers.VocMaskParser, PetsXmlParser):
     def masks(self, o) -> List[Mask]:
-        return [PetsMaskFile(o)]
+        mask_file = self._imageid2maskfile[self.imageid(o)]
+        return [PetsMaskFile(mask_file)]
 
 
 @dataclass

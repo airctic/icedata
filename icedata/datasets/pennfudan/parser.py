@@ -58,11 +58,8 @@ class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixi
     def filepath(self, o) -> Union[str, Path]:
         return self._filepath
 
-    def image_width(self, o) -> int:
-        return self._size[0]
-
-    def image_height(self, o) -> int:
-        return self._size[1]
+    def image_width_height(self, o) -> Tuple[int, int]:
+        return self._size[:2]
 
     def labels(self, o) -> List[int]:
         return [1] * self._num_objects
