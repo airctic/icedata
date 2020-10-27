@@ -1,4 +1,4 @@
-__all__ = ["parser", "ImageParser", "AnnotationParser", "BirdMaskFile"]
+__all__ = ["parser", "BirdsParser", "BirdMaskFile"]
 
 from icevision.imports import *
 from icevision.utils import *
@@ -7,27 +7,15 @@ from icevision import parsers
 
 
 def parser(data_dir: Union[str, Path], class_map: ClassMap) -> parsers.ParserInterface:
-    image_parser = ImageParser(data_dir)
-    annotation_parser = AnnotationParser(data_dir, class_map)
-    return parsers.CombinedParser(image_parser, annotation_parser)
+    return BirdsParser(data_dir=data_dir, class_map=class_map)
 
 
-class ImageParser(parsers.Parser, parsers.FilepathMixin):
-    def __init__(self, data_dir):
-        self.image_filepaths = get_image_files(data_dir)
-
-    def __iter__(self) -> Any:
-        yield from self.image_filepaths
-
-    def filepath(self, o) -> Union[str, Path]:
-        return o
-
-    def imageid(self, o) -> Hashable:
-        return o.stem
-
-
-class AnnotationParser(
-    parsers.Parser, parsers.MasksMixin, parsers.BBoxesMixin, parsers.LabelsMixin
+class BirdsParser(
+    parsers.Parser,
+    parsers.FilepathMixin,
+    parsers.MasksMixin,
+    parsers.BBoxesMixin,
+    parsers.LabelsMixin,
 ):
     def __init__(self, data_dir, class_map):
         self.mat_filepaths = get_files(
@@ -37,6 +25,20 @@ class AnnotationParser(
 
     def __iter__(self) -> Any:
         yield from self.mat_filepaths
+
+    def __len__(self) -> int:
+        return len(self.mat_filepaths)
+
+    def filepath(self, o) -> Union[str, Path]:
+        parts = list(o.parts)
+        parts[-3] = "images"
+        return Path(*parts).with_suffix(".jpg")
+
+    def imageid(self, o) -> Hashable:
+        return o.stem
+
+    def image_width_height(self, o) -> Tuple[int, int]:
+        return get_image_size(self.filepath(o))
 
     def masks(self, o) -> List[Mask]:
         return [BirdMaskFile(o)]
@@ -48,9 +50,6 @@ class AnnotationParser(
         bbox = mat["bbox"]
         xyxy = [int(bbox[pos]) for pos in ["left", "top", "right", "bottom"]]
         return [BBox.from_xyxy(*xyxy)]
-
-    def imageid(self, o) -> Hashable:
-        return o.stem
 
     def labels(self, o) -> List[int]:
         class_name = o.parent.name
