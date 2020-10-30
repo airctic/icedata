@@ -45,7 +45,6 @@ class PetsMaskParser(parsers.VocMaskParser, PetsXmlParser):
         return [PetsMaskFile(mask_file)]
 
 
-@dataclass
 class PetsMaskFile(VocMaskFile):
     """Extension of `MaskFile` for Pets masks.
     Invert 0s and 1s in the mask (the background is orignally 1 in the pets masks)
