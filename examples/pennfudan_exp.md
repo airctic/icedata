@@ -15,7 +15,7 @@ class_map = icedata.pennfudan.class_map()
 data_splitter = RandomSplitter([0.8, 0.2])
 
 # PennFudan parser: provided out-of-the-box
-parser = icedata.pennfudan.parser(data_dir=path, class_map=class_map)
+parser = icedata.pennfudan.parser(data_dir=path)
 train_records, valid_records = parser.parse(data_splitter)
 
 # shows images with corresponding labels and boxes
