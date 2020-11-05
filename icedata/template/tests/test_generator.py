@@ -35,7 +35,7 @@ def test_generate_dataset():
     # check init
     expected_import = f"from icedata.datasets import {dataset_name}\n"
     with open(init_filepath) as init_file:
-        assert expected_import in init_filepath.read()
+        assert expected_import in init_file.read()
 
     # revert changes
     shutil.rmtree(new_dataset_path)
