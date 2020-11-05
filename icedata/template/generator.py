@@ -35,10 +35,36 @@ def generate_dataset(dataset_name: str):
             print(f"   - {new_filepath.relative_to(datasets_dir)} file created\n")
 
     # append to init
-    import_statement = f"from icedata.datasets import {dataset_name}\n"
+    icedata_dir = Path(__file__).resolve().parents[1]
+    print("icedata_dir: ", icedata_dir)
+
+    # Get the existing datasets list
+    dir_to_search = icedata_dir / "datasets"
+    ds_dirlist = sorted(
+        [
+            filename
+            for filename in os.listdir(dir_to_search)
+            if (
+                os.path.isdir(os.path.join(dir_to_search, filename))
+                and not filename.startswith("_")
+            )
+        ]
+    )
+    
+    init_lines = []
+    # Add existing datasets to list
+    for ds_name in ds_dirlist:
+       import_statement = f"from icedata.datasets import {ds_name}\n" 
+       init_lines.append(import_statement)
+    
+    # # Add new dataset to list
+    # import_statement = f"from icedata.datasets import {dataset_name}\n"
+    # init_lines.append(import_statement)
+
+    # Update "__init__.py" file
     init_filepath = datasets_dir / "__init__.py"
-    init_lines = init_filepath.readlines()
-    init_lines.append(import_statement)
+    # init_lines = init_filepath.readlines()
+    # init_lines.append(import_statement)
 
     with open(init_filepath, "w") as init_file:
         init_file.write("".join(init_lines))
