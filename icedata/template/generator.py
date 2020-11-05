@@ -50,13 +50,13 @@ def generate_dataset(dataset_name: str):
             )
         ]
     )
-    
+
     init_lines = []
     # Add existing datasets to list
     for ds_name in ds_dirlist:
-       import_statement = f"from icedata.datasets import {ds_name}\n" 
-       init_lines.append(import_statement)
-    
+        import_statement = f"from icedata.datasets import {ds_name}\n"
+        init_lines.append(import_statement)
+
     # # Add new dataset to list
     # import_statement = f"from icedata.datasets import {dataset_name}\n"
     # init_lines.append(import_statement)

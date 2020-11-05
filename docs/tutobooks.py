@@ -245,7 +245,6 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
         # + " --ExecutePreprocessor.timeout="
         # + str(TIMEOUT)
     )
-    
 
     tmp_img_dir = md_name + "_files"
     if os.path.exists(tmp_img_dir):

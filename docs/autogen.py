@@ -409,7 +409,7 @@ def generate(dest_dir: Path):
 
     mkdocs_yml = mkdocs_yml.replace(mkdocs_yml[start:end], ds_nav)
     (icedata_dir / "docs/mkdocs.yml").write_text(mkdocs_yml, encoding="utf-8")
-    
+
     logger.opt(colors=True).log(
         "INFO",
         "️<fg #FFC000><bold>\nCreating datasets navigation bar: \n{}</></>",
