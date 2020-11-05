@@ -59,23 +59,23 @@ nav:
     - Pascal VOC 2012: examples/voc_exp.md
   - Datasets:
     - Birds: birds.md
-    - COCO: coco.md
-    - Fridge Objects: fridge.md
-    - PennFudan: pennfudan.md
-    - PETS: pets.md
-    - Pascal VOC 2012: voc.md
+    - Coco: coco.md
+    - Fridge: fridge.md
+    - Pennfudan: pennfudan.md
+    - Pets: pets.md
+    - Voc: voc.md
   - API Documentation:
     - COCO: 
       - Data: coco_data.md
     - Fridge: 
       - Data: fridge_data.md
-      - Parsers: fridge_parsers.md
+      - Parsers: fridge_parser.md
   - Parsing Cheatsheet: parsing_cheatsheet.md
   - Datasets Tools: datasets_tools.md
   - How-To: how-to.md
   - Contributing Guide: contributing.md
-  - Generating Docs: readme_mkdocs.md
+  - Generating Docs: readme.md
   - Preferences:
-    - Changing the colors: changing_the_colors.md    
+    - Changing the colors: changing-the-colors.md    
   - Code of Conduct: code_of_conduct.md
   - About: about.md
