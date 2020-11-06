@@ -203,7 +203,6 @@ def py_to_nb(py_path, nb_path, fill_outputs=True):
 
 
 def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
-    print("- img_dir: ", img_dir)
     img_exts = ("png", "jpg", "jpeg")
     # Assumes an already populated notebook.
     assert str(md_path).endswith(".md")
@@ -211,19 +210,15 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
     original_img_dir = str(img_dir)
     if original_img_dir.endswith("/"):
         original_img_dir = original_img_dir[:-1]
-    print("- original_img_dir: ", original_img_dir)
 
     md_dirname = os.path.dirname(os.path.abspath(md_path))
-    print("- md_dirname: ", md_dirname)
 
     # img_dir = os.path.abspath(img_dir)
     img_dir = Path(md_dirname) / img_dir
-    print("- img_dir: ", img_dir)
     nb_path = os.path.abspath(nb_path)
     nb_fname = str(nb_path).split("/")[-1]
 
     md_abspath = os.path.abspath(md_path)
-    print("- md_abspath: ", md_abspath)
 
     del_working_dir = False
     if working_dir is None:
@@ -231,7 +226,6 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
         working_dir = "tmp_" + str(random.randint(1e6, 1e7))
     if not os.path.exists(working_dir):
         os.makedirs(working_dir)
-    print("Using working_dir:", working_dir)
 
     os.chdir(working_dir)
     shutil.copyfile(nb_path, nb_fname)
@@ -239,7 +233,6 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
     md_name = str(md_path).split("/")[-1][:-3]
     target_md = md_name + ".md"
     img_dir = Path(img_dir) / md_name
-    print("- img_dir: ", img_dir)
     if not os.path.exists(img_dir):
         os.makedirs(img_dir)
 
@@ -252,13 +245,13 @@ def nb_to_md(nb_path, md_path, img_dir, working_dir=None):
         # + " --ExecutePreprocessor.timeout="
         # + str(TIMEOUT)
     )
+
     tmp_img_dir = md_name + "_files"
     if os.path.exists(tmp_img_dir):
         for fname in os.listdir(tmp_img_dir):
             if fname.endswith(img_exts):
                 src = Path(tmp_img_dir) / fname
                 target = Path(img_dir) / fname
-                print("copy", src, "to", target)
                 shutil.copyfile(src, target)
     os.chdir(current_dir)
     md_content = open(Path(working_dir) / (md_name + ".md")).read()

@@ -8,6 +8,8 @@ import keras_autodoc
 # from keras_autodoc.examples import copy_examples
 import tutobooks
 
+from loguru import logger
+
 PAGES = {
     "coco_data.md": ["icedata.datasets.coco.data.class_map"],
     "fridge_data.md": [
@@ -36,8 +38,6 @@ def copy_examples(examples_dir, destination_dir):
             continue
         module_path = os.path.join(examples_dir, file)
         docstring, starting_line = get_module_docstring(module_path)
-        print("dostring", docstring)
-        print("starting_line", starting_line)
         destination_file = os.path.join(destination_dir, file[:-2] + "md")
         with open(destination_file, "w+", encoding="utf-8") as f_out, open(
             examples_dir / file, "r+", encoding="utf-8"
@@ -60,6 +60,13 @@ def copy_examples(examples_dir, destination_dir):
             for line in f_in:
                 f_out.write(line)
             f_out.write("\n```")
+
+        from_to = f"{file} -> {destination_file}"
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<green><bold>Copying Examples: {}</></>",
+            from_to,
+        )
 
 
 def get_module_docstring(filepath):
@@ -122,7 +129,11 @@ def py_to_nb_md(dest_dir):
 
 def nb_to_md(dest_dir):
     notebooks_dir = icedata_dir / "notebooks"
-    print("Notebooks folder: ", notebooks_dir)
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>Notebooks folder: {}</></>",
+        notebooks_dir,
+    )
 
     for file_path in os.listdir(notebooks_dir):
         dir_path = notebooks_dir
@@ -135,15 +146,26 @@ def nb_to_md(dest_dir):
             continue
 
         # md_path = os.path.join(dest_dir, 'tutorial', file_name_no_ext + '.md')
-        md_path = os.path.join(dest_dir, file_name_no_ext + ".md")
+        file_name_md = file_name_no_ext + ".md"
+        md_path = os.path.join(dest_dir, file_name_md)
         images_path = "images"
 
         tutobooks.nb_to_md(nb_path, md_path, images_path)
+        from_to = f"{file_name} -> {file_name_md}"
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<green><bold>Converting to Notebook: {}</></>",
+            from_to,
+        )
 
 
 def examples_to_md(dest_dir):
     examples_dir = icedata_dir / "examples"
-    print("Examples folder: ", examples_dir)
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>Examples folder: {}</></>",
+        examples_dir,
+    )
 
     for file_path in os.listdir(examples_dir):
         dir_path = examples_dir
@@ -160,6 +182,13 @@ def examples_to_md(dest_dir):
 
         copy_examples(examples_dir, dest_dir / "examples")
 
+        from_to = f"{nb_path} -> {md_path}"
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<green><bold>Copying Examples: {}</></>",
+            from_to,
+        )
+
 
 def generate(dest_dir: Path):
     template_dir = icedata_dir / "docs" / "templates"
@@ -169,15 +198,30 @@ def generate(dest_dir: Path):
     # Create dest_dir if doesn't exist
     if os.path.exists(dest_dir):
         print("Removing sources folder:", dest_dir)
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<magenta><bold>\nRemoving sources folder: {}</></>",
+            dest_dir,
+        )
         shutil.rmtree(dest_dir)
     os.makedirs(dest_dir)
 
     # Create datasets_dir
-    print("datasets_dir folder:", datasets_dir)
     os.makedirs(datasets_dir)
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nCreating datasets folder: {}</></>",
+        datasets_dir,
+    )
 
     # Copy images folder from root folder to the template images folder
     copy_tree(str(icedata_dir / "images"), str(template_images_dir))
+    from_to = f"root/images -> docs/images"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nCopying images folder: {}</></>",
+        from_to,
+    )
 
     # Generate APIs Documentation
     doc_generator = keras_autodoc.DocumentationGenerator(
@@ -193,6 +237,12 @@ def generate(dest_dir: Path):
 
     # Copy web manifest
     shutil.copyfile("manifest.webmanifest", dest_dir / "manifest.webmanifest")
+    from_to = f"root/manifest.webmanifest -> docs/manifest.webmanifest"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nCopying webmanifest file: {}</></>",
+        from_to,
+    )
 
     # Auto generate the index.md file using the README.md file and the index.md file in templates folder
     readme = (icedata_dir / "README.md").read_text()
@@ -200,82 +250,171 @@ def generate(dest_dir: Path):
     # Search for the beginning and the end of the installation procedure to hide in Docs to avoid duplication
     start = readme.find("<!-- Not included in docs - start -->")
     end = readme.find("<!-- Not included in docs - end -->")
-    print("\nSTART: ", start)
-    print("END: ", end, "\n")
+
     readme = readme.replace(readme[start:end], "")
     index = (template_dir / "index.md").read_text()
     index = index.replace("{{autogenerated}}", readme[readme.find("##") :])
     (dest_dir / "index.md").write_text(index, encoding="utf-8")
 
     # Copy static .md files from the root folder
-    shutil.copyfile(icedata_dir / "CONTRIBUTING.md", dest_dir / "contributing.md")
-    shutil.copyfile(icedata_dir / "CODE_OF_CONDUCT.md", dest_dir / "code_of_conduct.md")
-    shutil.copyfile(
-        icedata_dir / "PARSING_CHEATSHEET.md", dest_dir / "parsing_cheatsheet.md"
+    dir_to_search = icedata_dir
+    fnamelist = [
+        filename for filename in os.listdir(dir_to_search) if filename.endswith(".md")
+    ]
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nCopying .md files root folder: {}</></>",
+        fnamelist,
     )
-    shutil.copyfile(icedata_dir / "DATASETS_TOOLS.md", dest_dir / "datasets_tools.md")
+
+    for fname in fnamelist:
+        fname_src = icedata_dir / fname
+        fname_dst = dest_dir / fname.lower()
+        shutil.copyfile(fname_src, fname_dst)
+        from_to = f"{fname} -> {fname.lower()}"
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<light-blue><bold>file: {}</></>",
+            from_to,
+        )
 
     # Copy static .md files from the docs folder
-    shutil.copyfile(icedata_dir / "docs/INSTALL.md", dest_dir / "install.md")
-    shutil.copyfile(icedata_dir / "docs/HOW-TO.md", dest_dir / "how-to.md")
-    shutil.copyfile(icedata_dir / "docs/ABOUT.md", dest_dir / "about.md")
+    dir_to_search = icedata_dir / "docs"
+    fnamelist = [
+        filename for filename in os.listdir(dir_to_search) if filename.endswith(".md")
+    ]
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nCopying .md files from the docs folder: {}</></>",
+        fnamelist,
+    )
+    for fname in fnamelist:
+        fname_src = dir_to_search / fname
+        fname_dst = dest_dir / fname.lower()
+        shutil.copyfile(fname_src, fname_dst)
+        from_to = f"{fname} -> {fname.lower()}"
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<light-blue><bold>Copying files: {}</></>",
+            from_to,
+        )
 
-    shutil.copyfile(icedata_dir / "docs/README.md", dest_dir / "readme_mkdocs.md")
+    # shutil.copyfile(icedata_dir / "docs/INSTALL.md", dest_dir / "install.md")
+    # shutil.copyfile(icedata_dir / "docs/HOW-TO.md", dest_dir / "how-to.md")
+    # shutil.copyfile(icedata_dir / "docs/ABOUT.md", dest_dir / "about.md")
 
-    shutil.copyfile(
-        icedata_dir / "docs/CHANGING-THE-COLORS.md",
-        dest_dir / "changing_the_colors.md",
+    # shutil.copyfile(icedata_dir / "docs/README.md", dest_dir / "readme_mkdocs.md")
+
+    # shutil.copyfile(
+    #     icedata_dir / "docs/CHANGING-THE-COLORS.md",
+    #     dest_dir / "changing_the_colors.md",
+    # )
+
+    ## Add each dataset README
+    dir_to_search = icedata_dir / "icedata/datasets"
+    ds_dirlist = sorted(
+        [
+            filename
+            for filename in os.listdir(dir_to_search)
+            if (
+                os.path.isdir(os.path.join(dir_to_search, filename))
+                and not filename.startswith("_")
+            )
+        ]
     )
 
-    # Copy Birds README
-    shutil.copyfile(
-        icedata_dir / "icedata/datasets/birds/README.md", dest_dir / "birds.md"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nList of datasets: {}</></>",
+        ds_dirlist,
     )
 
-    # Copy COCO README
-    shutil.copyfile(
-        icedata_dir / "icedata/datasets/coco/README.md", dest_dir / "coco.md"
-    )
+    for i, directory in enumerate(ds_dirlist):
+        fname_src = f"icedata/datasets/{directory}/README.md"
+        fname_dst = f"{directory}.md"
+        from_to = f"{fname_src} -> {fname_dst}"
+        shutil.copyfile(icedata_dir / fname_src, dest_dir / fname_dst)
+        logger.opt(colors=True).log(
+            "INFO",
+            "️<light-blue><bold>Copying files: : {}</></>",
+            from_to,
+        )
 
-    # Copy PETS README
-    shutil.copyfile(icedata_dir / "icedata/datasets/voc/README.md", dest_dir / "voc.md")
-
-    # Copy PETS README
-    shutil.copyfile(
-        icedata_dir / "icedata/datasets/pets/README.md", dest_dir / "pets.md"
-    )
-
-    # Copy Fridge README
-    shutil.copyfile(
-        icedata_dir / "icedata/datasets/fridge/README.md", dest_dir / "fridge.md"
-    )
-
-    # Copy PennFudan README
-    shutil.copyfile(
-        icedata_dir / "icedata/datasets/pennfudan/README.md", dest_dir / "pennfudan.md"
-    )
-
+    ##
     # Copy .md examples files to destination examples folder
-    copy_tree(str(icedata_dir / "examples"), str(dest_dir / "examples"))
+    dir_src = str(icedata_dir / "examples")
+    dir_dst = str(dest_dir / "examples")
+    copy_tree(dir_src, dir_dst)
+    from_to = f"{dir_src} -> {dir_dst}"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>\nCopying examples files: {}</></>",
+        from_to,
+    )
 
     # Copy images folder from the template folder to the destination folder
-    print("Template folder: ", template_images_dir)
+    # print("Template folder: ", template_images_dir)
     dest_images_dir = Path(dest_dir) / "images"
 
     # Copy images folder
     copy_tree(str(template_images_dir), str(dest_images_dir))
+    from_to = f"{template_images_dir} -> {dest_images_dir}"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>Copying Images: {}</></>",
+        from_to,
+    )
 
     # Copy css folder
-    copy_tree(str(icedata_dir / "docs/css"), str(dest_dir / "css"))
+    css_dir_src = str(icedata_dir / "docs/css")
+    css_dir_dest = str(str(dest_dir / "css"))
+    copy_tree(css_dir_src, css_dir_dest)
+    from_to = f"{css_dir_src} -> {css_dir_dest}"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>Copying CSS files: {}</></>",
+        from_to,
+    )
 
     # Copy js folder
-    copy_tree(str(icedata_dir / "docs/js"), str(dest_dir / "js"))
+    # copy_tree(str(icedata_dir / "docs/js"), str(dest_dir / "js"))
+    js_dir_src = str(icedata_dir / "docs/js")
+    js_dir_dest = str(str(dest_dir / "js"))
+    copy_tree(js_dir_src, js_dir_dest)
+    from_to = f"{js_dir_src} -> {js_dir_dest}"
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<green><bold>Copying JS files: {}</></>",
+        from_to,
+    )
 
     # Generate .md files form Jupyter Notebooks located in the /ipynb folder
     nb_to_md(dest_dir)
 
     # Generate .md files form python files located in the /examples folder
     # examples_to_md(dest_dir)
+
+    ## generate - Datasets Navigation Items
+    # Search for the beginning and the end of the installation procedure to hide in Docs to avoid duplication
+    mkdocs_yml = (icedata_dir / "docs/mkdocs.yml").read_text()
+    start = mkdocs_yml.find("- Datasets")
+    end = mkdocs_yml.find("  - API Documentation")
+
+    ds_nav = "- Datasets:\n"
+    for directory in ds_dirlist:
+        ds_nav = (
+            ds_nav + f"    - {directory[:1].upper() + directory[1:]}: {directory}.md\n"
+        )
+    ds_nav + "\n"
+
+    mkdocs_yml = mkdocs_yml.replace(mkdocs_yml[start:end], ds_nav)
+    (icedata_dir / "docs/mkdocs.yml").write_text(mkdocs_yml, encoding="utf-8")
+
+    logger.opt(colors=True).log(
+        "INFO",
+        "️<fg #FFC000><bold>\nCreating datasets navigation bar: \n{}</></>",
+        ds_nav,
+    )
 
 
 if __name__ == "__main__":
