@@ -1,4 +1,4 @@
-__all__ = ["load_data", "load"]
+__all__ = ["load_data"]
 
 from icevision.imports import *
 from icevision.core import *
@@ -15,8 +15,3 @@ def load_data(force_download: bool = False):
         download_and_extract(url=url, save_path=tar_file)
 
     return save_dir
-
-
-def load(force_download: bool = False):
-    warnings.warn("load will be deprecated in 0.1.0, please use load_data instead")
-    return load_data(force_download=force_download)

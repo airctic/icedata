@@ -1,8 +1,5 @@
 __all__ = ["parser"]
 
-# from icevision.imports import *
-# from icevision.core import *
-# from icevision import parsers
 from icevision.all import *
 
 
@@ -37,7 +34,8 @@ class BIWIParser(
         return self.img_dir / o[0]
 
     def keypoints(self, o):
-        return [KeyPoints.from_xyv(o[1].tolist() + [1], ["nose"])]
+        y, x = o[1].tolist()
+        return [KeyPoints.from_xyv([x, y, 1], ["nose"])]
 
     def image_width_height(self, o) -> Tuple[int, int]:
         return get_image_size(self.filepath(o))
