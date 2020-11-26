@@ -15,7 +15,7 @@ This dataset contains the data from the PASCAL Visual Object Classes Challenge 2
 ![image](images/voc_annotations.png)
 
 ## Usage 
-<a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/how_train_dataset.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing a dataset using the voc parser
+<a href="https://colab.research.google.com/github/airctic/icedata/blob/master/notebooks/how_train_dataset.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a> Example showing a dataset using the voc parser
 
 
 ## How to load this dataset
