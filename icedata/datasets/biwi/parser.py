@@ -10,6 +10,10 @@ def parser(data_dir: Path):
     return BIWIParser(annotations_filepath=annotations_filepath, img_dir=img_dir)
 
 
+class BIWIKeypointsMetadata(KeypointsMetadata):
+    labels = ["nose"]
+
+
 class BIWIParser(
     parsers.Parser,
     parsers.FilepathMixin,
@@ -35,7 +39,7 @@ class BIWIParser(
 
     def keypoints(self, o):
         y, x = o[1].tolist()
-        return [KeyPoints.from_xyv([x, y, 1], ["nose"])]
+        return [KeyPoints.from_xyv([x, y, 1], BIWIKeypointsMetadata)]
 
     def image_width_height(self, o) -> Tuple[int, int]:
         return get_image_size(self.filepath(o))
