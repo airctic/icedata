@@ -1,3 +1,5 @@
+__all__ = ["parser"]
+
 from icevision.all import *
 
 
@@ -39,29 +41,29 @@ class OCHKeypointsMetadata(KeypointsMetadata):
         "left_eye",
     )
 
-    connections = (
-        KeypointConnection(15, 18, OCHConnectionsColor.head),
-        KeypointConnection(12, 16, OCHConnectionsColor.head),
-        KeypointConnection(3, 4, OCHConnectionsColor.left_arm),
-        KeypointConnection(18, 16, OCHConnectionsColor.head),
-        KeypointConnection(16, 13, OCHConnectionsColor.head),
-        KeypointConnection(4, 5, OCHConnectionsColor.left_arm),
-        KeypointConnection(16, 17, OCHConnectionsColor.head),
-        KeypointConnection(13, 3, OCHConnectionsColor.torso),
-        KeypointConnection(0, 1, OCHConnectionsColor.right_arm),
-        KeypointConnection(17, 14, OCHConnectionsColor.head),
-        KeypointConnection(13, 0, OCHConnectionsColor.torso),
-        KeypointConnection(1, 2, OCHConnectionsColor.right_arm),
-        KeypointConnection(3, 9, OCHConnectionsColor.torso),
-        KeypointConnection(0, 6, OCHConnectionsColor.torso),
-        KeypointConnection(9, 6, OCHConnectionsColor.torso),
-        KeypointConnection(9, 10, OCHConnectionsColor.left_leg),
-        KeypointConnection(6, 7, OCHConnectionsColor.right_leg),
-        KeypointConnection(10, 11, OCHConnectionsColor.left_leg),
-        KeypointConnection(7, 8, OCHConnectionsColor.right_leg),
-        KeypointConnection(15, 3, OCHConnectionsColor.head),
-        KeypointConnection(14, 0, OCHConnectionsColor.head),
-    )
+    # connections = (
+    #     KeypointConnection(15, 18, OCHConnectionsColor.head),
+    #     KeypointConnection(12, 16, OCHConnectionsColor.head),
+    #     KeypointConnection(3, 4, OCHConnectionsColor.left_arm),
+    #     KeypointConnection(18, 16, OCHConnectionsColor.head),
+    #     KeypointConnection(16, 13, OCHConnectionsColor.head),
+    #     KeypointConnection(4, 5, OCHConnectionsColor.left_arm),
+    #     KeypointConnection(16, 17, OCHConnectionsColor.head),
+    #     KeypointConnection(13, 3, OCHConnectionsColor.torso),
+    #     KeypointConnection(0, 1, OCHConnectionsColor.right_arm),
+    #     KeypointConnection(17, 14, OCHConnectionsColor.head),
+    #     KeypointConnection(13, 0, OCHConnectionsColor.torso),
+    #     KeypointConnection(1, 2, OCHConnectionsColor.right_arm),
+    #     KeypointConnection(3, 9, OCHConnectionsColor.torso),
+    #     KeypointConnection(0, 6, OCHConnectionsColor.torso),
+    #     KeypointConnection(9, 6, OCHConnectionsColor.torso),
+    #     KeypointConnection(9, 10, OCHConnectionsColor.left_leg),
+    #     KeypointConnection(6, 7, OCHConnectionsColor.right_leg),
+    #     KeypointConnection(10, 11, OCHConnectionsColor.left_leg),
+    #     KeypointConnection(7, 8, OCHConnectionsColor.right_leg),
+    #     KeypointConnection(15, 3, OCHConnectionsColor.head),
+    #     KeypointConnection(14, 0, OCHConnectionsColor.head),
+    # )
 
 
 class OCHumanParser(
