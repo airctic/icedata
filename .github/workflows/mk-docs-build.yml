@@ -19,7 +19,9 @@ jobs:
           python-version: 3.7
 
       - name: Install package
-        run: pip install -e ".[dev]"
+        run: |
+          pip install git+git://github.com/airctic/icevision.git#egg=icevision[all] --upgrade
+          pip install -e ".[dev]"
 
       - name: Build the docs
         run:  |

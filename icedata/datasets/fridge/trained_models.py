@@ -6,7 +6,7 @@ from icedata.datasets.fridge.data import NUM_CLASSES
 
 
 def _load_efficientdet(name, weights_url):
-    model = efficientdet.model(name, num_classes=NUM_CLASSES, img_size=512)
+    model = efficientdet.model(name, num_classes=NUM_CLASSES, img_size=384)
     load_model_weights_from_url(model, weights_url)
     return model
 
