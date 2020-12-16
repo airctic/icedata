@@ -1,4 +1,4 @@
-__all__ = ["class_map", "load"]
+__all__ = ["class_map", "load_data"]
 
 from icevision.imports import *
 from icevision.core import *
@@ -34,7 +34,7 @@ def class_map(background: int = 0):
     return ClassMap(classes=_CLASSES, background=background)
 
 
-def load(force_download=False):
+def load_data(force_download=False):
     url = "http://host.robots.ox.ac.uk/pascal/VOC/voc2012/VOCtrainval_11-May-2012.tar"
 
     save_dir = get_data_dir() / "voc"
