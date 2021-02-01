@@ -51,7 +51,7 @@ class BirdsParser(
         xyxy = [int(bbox[pos]) for pos in ["left", "top", "right", "bottom"]]
         return [BBox.from_xyxy(*xyxy)]
 
-    def labels(self, o) -> List[int]:
+    def labels(self, o) -> List[Hashable]:
         class_name = o.parent.name
         return [self.class_map.get_name(class_name)]
 

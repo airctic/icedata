@@ -9,7 +9,8 @@ def parser(data_dir) -> parsers.ParserInterface:
 
 
 class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixin):
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, class_map: Optional[ClassMap] = None):
+        super().__init__(class_map=class_map)
         self.data_dir = data_dir
         self.filenames = get_files(data_dir / "Annotation", extensions=".txt")
 
@@ -61,8 +62,8 @@ class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixi
     def image_width_height(self, o) -> Tuple[int, int]:
         return self._size[:2]
 
-    def labels(self, o) -> List[int]:
-        return [1] * self._num_objects
+    def labels(self, o) -> List[Hashable]:
+        return ["person"] * self._num_objects
 
     def iscrowds(self, o) -> List[bool]:
         return [False] * self._num_objects

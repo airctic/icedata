@@ -44,7 +44,7 @@ class BIWIParser(
     def image_width_height(self, o) -> Tuple[int, int]:
         return get_image_size(self.filepath(o))
 
-    def labels(self, o) -> List[int]:
+    def labels(self, o) -> List[Hashable]:
         return [1]
 
     def bboxes(self, o) -> List[BBox]:
