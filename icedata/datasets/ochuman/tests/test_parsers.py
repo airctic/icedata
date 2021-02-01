@@ -12,14 +12,16 @@ def test_parser(data_dir):
     record = records[3]
 
     expected = {
-        "imageid",
-        "labels",
         "bboxes",
+        "class_map",
         "filepath",
         "height",
-        "width",
+        "imageid",
         "keypoints",
+        "labels",
+        "width",
     }
+
     assert set(record.keys()) == expected
 
     assert record["filepath"].name == "000004.jpg"

@@ -74,6 +74,7 @@ class OCHumanParser(
     parsers.BBoxesMixin,
 ):
     def __init__(self, annotations_filepath, img_dir):
+        super().__init__()
         self.annotations_dict = json.loads(Path(annotations_filepath).read_bytes())
         self.img_dir = Path(img_dir)
 

@@ -31,7 +31,7 @@ def parser(data_dir: Path, class_map: ClassMap, mask=False):
 class PetsXmlParser(parsers.VocXmlParser):
     def labels(self, o) -> List[Hashable]:
         name = re.findall(r"^(.*)_\d+$", o.stem)[0]
-        class_id = self.class_map.get_name(name)
+        class_id = self.class_map.get_by_name(name)
 
         # there is an image with two cats (same breed)
         num_objs = len(self._root.findall("object"))
