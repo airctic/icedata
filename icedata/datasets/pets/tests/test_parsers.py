@@ -23,7 +23,7 @@ def test_parser(data_dir):
 
     assert record["filepath"].name == "Abyssinian_119.jpg"
     assert record["imageid"] == 0
-    assert record["labels"] == [2]
+    assert record["labels"] == [1]
     assert record["height"] == 297
     assert record["width"] == 300
 

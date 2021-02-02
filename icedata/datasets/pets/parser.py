@@ -36,7 +36,7 @@ class PetsXmlParser(parsers.VocXmlParser):
         # there is an image with two cats (same breed)
         num_objs = len(self._root.findall("object"))
 
-        return [class_id] * num_objs
+        return [name] * num_objs
 
 
 class PetsMaskParser(parsers.VocMaskParser, PetsXmlParser):
