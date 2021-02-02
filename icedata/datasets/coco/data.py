@@ -99,7 +99,7 @@ _CLASSES = [
 NUM_CLASSES = len(_CLASSES) + 1
 
 
-def class_map(background: Optional[int] = 0) -> ClassMap:
+def class_map(background: Optional[int] = "background") -> ClassMap:
     return ClassMap(classes=_CLASSES, background=background)
 
 

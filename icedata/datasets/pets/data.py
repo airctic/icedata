@@ -49,7 +49,7 @@ _CLASSES = sorted(
 NUM_CLASSES = len(_CLASSES) + 1
 
 
-def class_map(background: int = 0):
+def class_map(background: int = "background"):
     return ClassMap(classes=_CLASSES, background=background)
 
 

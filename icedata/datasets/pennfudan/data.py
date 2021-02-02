@@ -1,13 +1,9 @@
-__all__ = ["NUM_CLASSES", "load_data", "class_map"]
+__all__ = ["NUM_CLASSES", "load_data"]
 
 from icevision.imports import *
 from icevision import *
 
 NUM_CLASSES = 1 + 1
-
-
-def class_map(background: Optional[int] = 0) -> ClassMap:
-    return ClassMap(["person"], background=background)
 
 
 def load_data(force_download=False):

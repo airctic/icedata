@@ -3,14 +3,22 @@ from icevision.all import *
 
 
 def test_parser(data_dir):
-    class_map = icedata.pets.class_map()
-    parser = icedata.pets.parser(data_dir, class_map=class_map, mask=True)
+    parser = icedata.pets.parser(data_dir, class_map=None, mask=True)
 
     records = parser.parse(data_splitter=SingleSplitSplitter())[0]
     assert len(records) == 5
     record = records[0]
 
-    expected = {"imageid", "labels", "bboxes", "filepath", "height", "width", "masks"}
+    expected = {
+        "bboxes",
+        "class_map",
+        "filepath",
+        "height",
+        "imageid",
+        "labels",
+        "masks",
+        "width",
+    }
     assert set(record.keys()) == expected
 
     assert record["filepath"].name == "Abyssinian_119.jpg"

@@ -22,6 +22,7 @@ class BIWIParser(
     parsers.BBoxesMixin,
 ):
     def __init__(self, annotations_filepath, img_dir):
+        super().__init__()
         self.annotations_dict = pickle.load(open(Path(annotations_filepath), "rb"))
         self.img_dir = Path(img_dir)
 
