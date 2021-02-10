@@ -13,7 +13,7 @@ def class_map(background: Optional[int] = "background") -> ClassMap:
 
 
 def load_data(force_download=False):
-    base_url = "https://cvbp.blob.core.windows.net/public/datasets/object_detection/odFridgeObjects.zip"
+    base_url = "https://cvbp-secondary.z19.web.core.windows.net/datasets/object_detection/odFridgeObjects.zip"
     save_dir = get_data_dir() / "fridge"
     save_dir.mkdir(exist_ok=True)
 
