@@ -8,8 +8,9 @@ def parser(data_dir) -> parsers.ParserInterface:
     return PennFundanParser(data_dir=data_dir)
 
 
-class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixin):
+class PennFundanParser(Parser):
     def __init__(self, data_dir, class_map: Optional[ClassMap] = None):
+        raise NotImplementedError("Has to be refactored to new API")
         super().__init__(class_map=class_map)
         self.data_dir = data_dir
         self.filenames = get_files(data_dir / "Annotation", extensions=".txt")

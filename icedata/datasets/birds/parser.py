@@ -3,21 +3,16 @@ __all__ = ["parser", "BirdsParser", "BirdMaskFile"]
 from icevision.imports import *
 from icevision.utils import *
 from icevision.core import *
-from icevision import parsers
+from icevision.parsers import Parser
 
 
-def parser(data_dir: Union[str, Path], class_map: ClassMap) -> parsers.ParserInterface:
+def parser(data_dir: Union[str, Path], class_map: ClassMap) -> Parser:
     return BirdsParser(data_dir=data_dir, class_map=class_map)
 
 
-class BirdsParser(
-    parsers.Parser,
-    parsers.FilepathMixin,
-    parsers.MasksMixin,
-    parsers.BBoxesMixin,
-    parsers.LabelsMixin,
-):
+class BirdsParser(Parser):
     def __init__(self, data_dir, class_map):
+        raise NotImplementedError("Has to be refactored to new API")
         self.mat_filepaths = get_files(
             data_dir / "annotations-mat", extensions=[".mat"]
         )
