@@ -14,14 +14,9 @@ class BIWIKeypointsMetadata(KeypointsMetadata):
     labels = ["nose"]
 
 
-class BIWIParser(
-    parsers.Parser,
-    parsers.FilepathMixin,
-    parsers.KeyPointsMixin,
-    parsers.LabelsMixin,
-    parsers.BBoxesMixin,
-):
+class BIWIParser(Parser):
     def __init__(self, annotations_filepath, img_dir):
+        raise NotImplementedError("Has to be refactored to new API")
         self.annotations_dict = pickle.load(open(Path(annotations_filepath), "rb"))
         self.img_dir = Path(img_dir)
 
@@ -44,7 +39,7 @@ class BIWIParser(
     def image_width_height(self, o) -> Tuple[int, int]:
         return get_image_size(self.filepath(o))
 
-    def labels(self, o) -> List[int]:
+    def labels(self, o) -> List[Hashable]:
         return [1]
 
     def bboxes(self, o) -> List[BBox]:

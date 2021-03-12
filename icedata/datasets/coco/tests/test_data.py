@@ -6,5 +6,5 @@ def test_class_map():
     class_map = icedata.coco.class_map()
 
     assert num_classes == len(class_map) == 91
-    assert class_map.get_id(0) == "background"
-    assert class_map.get_id(-1) == "toothbrush"
+    assert class_map.get_by_id(0) == "background"
+    assert class_map.get_by_id(-1) == "toothbrush"

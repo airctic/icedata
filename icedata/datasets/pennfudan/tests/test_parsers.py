@@ -3,7 +3,6 @@ from icevision.all import *
 
 
 def test_parser(data_dir):
-    class_map = icedata.pennfudan.class_map()
     parser = icedata.pennfudan.parser(data_dir)
 
     records = parser.parse(data_splitter=SingleSplitSplitter())[0]
@@ -11,15 +10,17 @@ def test_parser(data_dir):
     record = records[0]
 
     expected = {
-        "imageid",
-        "labels",
         "bboxes",
-        "masks",
-        "iscrowds",
+        "class_map",
         "filepath",
         "height",
+        "imageid",
+        "iscrowds",
+        "labels",
+        "masks",
         "width",
     }
+
     assert set(record.keys()) == expected
 
     assert record["filepath"].name == "FudanPed00001.png"
