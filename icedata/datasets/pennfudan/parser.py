@@ -84,6 +84,7 @@ class PennFundanParser(Parser):
         record.detect.add_bboxes(self.bboxes(o))
         record.detect.add_masks(self.masks(o))
 
+
 def dataset(
     data_dir: Path,
     size: int = 384,
