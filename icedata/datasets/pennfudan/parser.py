@@ -1,4 +1,4 @@
-__all__ = ["parser", "PennFundanParser"]
+__all__ = ["parser", "dataset"]
 
 from icevision.imports import *
 from icevision import *
