@@ -2,6 +2,7 @@ __all__ = ["parser", "PennFundanParser"]
 
 from icevision.imports import *
 from icevision import *
+from icevision.parsers.parser import *
 
 
 def parser(data_dir) -> parsers.ParserInterface:
@@ -10,7 +11,6 @@ def parser(data_dir) -> parsers.ParserInterface:
 
 class PennFundanParser(Parser):
     def __init__(self, data_dir, class_map: Optional[ClassMap] = None):
-        raise NotImplementedError("Has to be refactored to new API")
         super().__init__(class_map=class_map)
         self.data_dir = data_dir
         self.filenames = get_files(data_dir / "Annotation", extensions=".txt")
@@ -74,3 +74,33 @@ class PennFundanParser(Parser):
 
     def bboxes(self, o) -> List[BBox]:
         return self._bboxes
+
+    def parse_fields(self, o, record):
+        record.set_filepath(self.filepath(o))
+        record.set_img_size(self.image_width_height(o))
+
+        record.detect.set_class_map(self.class_map)
+        record.detect.add_labels(self.labels(o))
+        record.detect.add_bboxes(self.bboxes(o))
+        record.detect.add_masks(self.masks(o))
+
+
+def dataset(
+    data_dir: Path,
+    size: int = 384,
+    presize: int = 512,
+    data_splitter: Optional[DataSplitter] = None,
+):
+    _parser = parser(data_dir=data_dir)
+
+    train_records, valid_records = _parser.parse(data_splitter=data_splitter)
+
+    train_tfms = tfms.A.Adapter(
+        [*tfms.A.aug_tfms(size=size, presize=presize), tfms.A.Normalize()]
+    )
+    valid_tfms = tfms.A.Adapter([*tfms.A.resize_and_pad(size), tfms.A.Normalize()])
+
+    train_ds = Dataset(train_records, train_tfms)
+    valid_ds = Dataset(valid_records, valid_tfms)
+
+    return train_ds, valid_ds
