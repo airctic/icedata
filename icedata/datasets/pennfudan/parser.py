@@ -10,8 +10,14 @@ def parser(data_dir) -> parsers.ParserInterface:
 
 
 class PennFundanParser(Parser):
-    def __init__(self, data_dir, class_map: Optional[ClassMap] = None):
-        super().__init__(class_map=class_map)
+    def __init__(
+        self,
+        data_dir: Union[str, Path],
+        class_map: Optional[ClassMap] = None,
+        idmap: Optional[IDMap] = None,
+    ):
+        super().__init__(record=self.template_record(), idmap=idmap)
+        self.class_map = class_map or ClassMap().unlock()
         self.data_dir = data_dir
         self.filenames = get_files(data_dir / "Annotation", extensions=".txt")
 
@@ -20,6 +26,16 @@ class PennFundanParser(Parser):
 
     def __len__(self):
         return len(self.filenames)
+
+    def template_record(self) -> BaseRecord:
+        return BaseRecord(
+            (
+                FilepathRecordComponent(),
+                InstancesLabelsRecordComponent(),
+                BBoxesRecordComponent(),
+                MasksRecordComponent(),
+            )
+        )
 
     def prepare(self, o):
         self._imageid = getattr(self, "_imageid", 0) + 1
