@@ -10,7 +10,9 @@ def dataset(
     presize: int = 512,
     data_splitter: Optional[DataSplitter] = None,
 ):
-    _parser = parser(data_dir=data_dir)
+    _parser = parser(
+        annotations_file=data_dir / "annotations.json", img_dir=data_dir / "images"
+    )
 
     train_records, valid_records = _parser.parse(data_splitter=data_splitter)
 
