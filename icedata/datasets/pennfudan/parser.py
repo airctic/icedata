@@ -91,7 +91,7 @@ class PennFundanParser(Parser):
     def bboxes(self, o) -> List[BBox]:
         return self._bboxes
 
-    def parse_fields(self, o, record):
+    def parse_fields(self, o, record, is_new):
         record.set_filepath(self.filepath(o))
         record.set_img_size(self.image_width_height(o))
 
