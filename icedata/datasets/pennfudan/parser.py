@@ -95,7 +95,7 @@ class PennFundanParser(Parser):
         record.set_filepath(self.filepath(o))
         record.set_img_size(self.image_width_height(o))
 
-        record.detect.set_class_map(self.class_map)
-        record.detect.add_labels(self.labels(o))
-        record.detect.add_bboxes(self.bboxes(o))
-        record.detect.add_masks(self.masks(o))
+        record.detection.set_class_map(self.class_map)
+        record.detection.add_labels(self.labels(o))
+        record.detection.add_bboxes(self.bboxes(o))
+        record.detection.add_masks(self.masks(o))
