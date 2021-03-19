@@ -16,7 +16,7 @@ class PennFundanParser(Parser):
         class_map: Optional[ClassMap] = None,
         idmap: Optional[IDMap] = None,
     ):
-        super().__init__(record=self.template_record(), idmap=idmap)
+        super().__init__(template_record=self.template_record(), idmap=idmap)
         self.class_map = class_map or ClassMap().unlock()
         self.data_dir = data_dir
         self.filenames = get_files(data_dir / "Annotation", extensions=".txt")
@@ -79,7 +79,7 @@ class PennFundanParser(Parser):
     def image_width_height(self, o) -> Tuple[int, int]:
         return self._size[:2]
 
-    def label_ids(self, o) -> List[Hashable]:
+    def labels(self, o) -> List[Hashable]:
         return ["person"] * self._num_objects
 
     def iscrowds(self, o) -> List[bool]:
