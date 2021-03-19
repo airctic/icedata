@@ -70,7 +70,7 @@ class PennFundanParser(Parser):
                 bbox = BBox.from_xyxy(*points)
                 self._bboxes.append(bbox)
 
-    def imageid(self, o) -> int:
+    def record_id(self, o) -> int:
         return self._imageid
 
     def filepath(self, o) -> Union[str, Path]:
