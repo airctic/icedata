@@ -79,7 +79,7 @@ class PennFundanParser(Parser):
     def image_width_height(self, o) -> Tuple[int, int]:
         return self._size[:2]
 
-    def labels(self, o) -> List[Hashable]:
+    def label_ids(self, o) -> List[Hashable]:
         return ["person"] * self._num_objects
 
     def iscrowds(self, o) -> List[bool]:
