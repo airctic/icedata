@@ -14,15 +14,9 @@ class BIWIKeypointsMetadata(KeypointsMetadata):
     labels = ["nose"]
 
 
-class BIWIParser(
-    parsers.Parser,
-    parsers.FilepathMixin,
-    parsers.KeyPointsMixin,
-    parsers.LabelsMixin,
-    parsers.BBoxesMixin,
-):
+class BIWIParser(Parser):
     def __init__(self, annotations_filepath, img_dir):
-        super().__init__()
+        raise NotImplementedError("Has to be refactored to new API")
         self.annotations_dict = pickle.load(open(Path(annotations_filepath), "rb"))
         self.img_dir = Path(img_dir)
 

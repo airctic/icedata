@@ -66,15 +66,9 @@ class OCHKeypointsMetadata(KeypointsMetadata):
     # )
 
 
-class OCHumanParser(
-    parsers.Parser,
-    parsers.FilepathMixin,
-    parsers.KeyPointsMixin,
-    parsers.LabelsMixin,
-    parsers.BBoxesMixin,
-):
+class OCHumanParser(Parser):
     def __init__(self, annotations_filepath, img_dir):
-        super().__init__()
+        raise NotImplementedError("Has to be refactored to new API")
         self.annotations_dict = json.loads(Path(annotations_filepath).read_bytes())
         self.img_dir = Path(img_dir)
 

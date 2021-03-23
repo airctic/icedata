@@ -1,16 +1,23 @@
-__all__ = ["parser", "PennFundanParser"]
+__all__ = ["parser"]
 
 from icevision.imports import *
 from icevision import *
+from icevision.parsers.parser import *
 
 
 def parser(data_dir) -> parsers.ParserInterface:
     return PennFundanParser(data_dir=data_dir)
 
 
-class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixin):
-    def __init__(self, data_dir, class_map: Optional[ClassMap] = None):
-        super().__init__(class_map=class_map)
+class PennFundanParser(Parser):
+    def __init__(
+        self,
+        data_dir: Union[str, Path],
+        class_map: Optional[ClassMap] = None,
+        idmap: Optional[IDMap] = None,
+    ):
+        super().__init__(template_record=self.template_record(), idmap=idmap)
+        self.class_map = class_map or ClassMap().unlock()
         self.data_dir = data_dir
         self.filenames = get_files(data_dir / "Annotation", extensions=".txt")
 
@@ -19,6 +26,16 @@ class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixi
 
     def __len__(self):
         return len(self.filenames)
+
+    def template_record(self) -> BaseRecord:
+        return BaseRecord(
+            (
+                FilepathRecordComponent(),
+                InstancesLabelsRecordComponent(),
+                BBoxesRecordComponent(),
+                MasksRecordComponent(),
+            )
+        )
 
     def prepare(self, o):
         self._imageid = getattr(self, "_imageid", 0) + 1
@@ -53,7 +70,7 @@ class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixi
                 bbox = BBox.from_xyxy(*points)
                 self._bboxes.append(bbox)
 
-    def imageid(self, o) -> int:
+    def record_id(self, o) -> int:
         return self._imageid
 
     def filepath(self, o) -> Union[str, Path]:
@@ -73,3 +90,12 @@ class PennFundanParser(parsers.MaskRCNN, parsers.FilepathMixin, parsers.SizeMixi
 
     def bboxes(self, o) -> List[BBox]:
         return self._bboxes
+
+    def parse_fields(self, o, record, is_new):
+        record.set_filepath(self.filepath(o))
+        record.set_img_size(self.image_width_height(o))
+
+        record.detection.set_class_map(self.class_map)
+        record.detection.add_labels(self.labels(o))
+        record.detection.add_bboxes(self.bboxes(o))
+        record.detection.add_masks(self.masks(o))
