@@ -1,8 +1,10 @@
-__all__ = ["load_data"]
+__all__ = ["NUM_CLASSES", "load_data"]
 
 from icevision.imports import *
 from icevision.core import *
 from icevision.utils import *
+
+NUM_CLASSES = 1 + 1
 
 
 def load_data(force_download: bool = False):
