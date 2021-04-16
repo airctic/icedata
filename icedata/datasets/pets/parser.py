@@ -1,4 +1,4 @@
-__all__ = ["parser", "PetsXmlParser", "PetsMaskParser", "PetsMaskFile"]
+__all__ = ["parser", "PetsBBoxParser", "PetsMaskParser", "PetsMaskFile"]
 
 from icevision.imports import *
 from icevision.core import *
@@ -11,7 +11,7 @@ def parser(data_dir: Path, class_map: ClassMap, mask=False):
     masks_dir = data_dir / "annotations/trimaps"
 
     if not mask:
-        parser = PetsXmlParser(
+        parser = PetsBBoxParser(
             annotations_dir=annotations_dir,
             images_dir=images_dir,
             class_map=class_map,
@@ -28,7 +28,7 @@ def parser(data_dir: Path, class_map: ClassMap, mask=False):
     return parser
 
 
-class PetsXmlParser(parsers.VocXmlParser):
+class PetsBBoxParser(parsers.VOCBBoxParser):
     def labels(self, o) -> List[Hashable]:
         name = re.findall(r"^(.*)_\d+$", o.stem)[0]
 
@@ -38,7 +38,7 @@ class PetsXmlParser(parsers.VocXmlParser):
         return [name] * num_objs
 
 
-class PetsMaskParser(parsers.VocMaskParser, PetsXmlParser):
+class PetsMaskParser(parsers.VOCMaskParser, PetsBBoxParser):
     def masks(self, o) -> List[Mask]:
         mask_file = self._imageid2maskfile[self.imageid(o)]
         return [PetsMaskFile(mask_file)]
