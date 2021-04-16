@@ -38,7 +38,7 @@ class PennFundanParser(Parser):
         )
 
     def prepare(self, o):
-        self._imageid = getattr(self, "_imageid", 0) + 1
+        self._record_id = getattr(self, "_record_id", 0) + 1
         self.lines = L(o.read_text().split("\n"))
         self._bboxes = []
 
@@ -71,7 +71,7 @@ class PennFundanParser(Parser):
                 self._bboxes.append(bbox)
 
     def record_id(self, o) -> int:
-        return self._imageid
+        return self._record_id
 
     def filepath(self, o) -> Union[str, Path]:
         return self._filepath
