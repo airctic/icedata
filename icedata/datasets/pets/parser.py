@@ -40,7 +40,7 @@ class PetsBBoxParser(parsers.VOCBBoxParser):
 
 class PetsMaskParser(parsers.VOCMaskParser, PetsBBoxParser):
     def masks(self, o) -> List[Mask]:
-        mask_file = self._imageid2maskfile[self.imageid(o)]
+        mask_file = self._record_id2maskfile[self.record_id(o)]
         return [PetsMaskFile(mask_file)]
 
 
