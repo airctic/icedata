@@ -1,0 +1,1717 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for IceData.">
+      
+      
+        <link rel="canonical" href="https://airctic.github.io/icedata/getting_started/">
+      
+      
+        <meta name="author" content="Lucas Goulart Vazquez, Farid Hassainia, and Contributors">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Getting Started - IceData</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2094f3">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+      <link rel="manifest" href="../manifest.webmanifest" crossorigin="use-credentials">
+    
+    
+      <link rel="stylesheet" href="../css/termynal.css">
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#getting-started-with-icevision" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://airctic.github.io/icedata/" title="IceData" class="md-header-nav__button md-logo" aria-label="IceData">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IceData
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Getting Started
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/airctic/IceData" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://airctic.github.io/icedata/" title="IceData" class="md-nav__button md-logo" aria-label="IceData">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IceData
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/airctic/IceData" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Tutorials
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Tutorials
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Getting Started
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Getting Started" class="md-nav__link md-nav__link--active">
+      Getting Started
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-icevision" class="md-nav__link">
+    Why IceVision?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1- Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-google-colab" class="md-nav__link">
+    2- Using Google Colab
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-packages-installations" class="md-nav__link">
+    3- Packages Installations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-imports" class="md-nav__link">
+    4- Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-datasets-pets-example" class="md-nav__link">
+    5- Datasets : PETS example
+  </a>
+  
+    <nav class="md-nav" aria-label="5- Datasets : PETS example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-parser" class="md-nav__link">
+    5.1- Parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-split-the-dataset" class="md-nav__link">
+    5.2- Split the dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-parsing-data" class="md-nav__link">
+    5.3- Parsing data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-visualization" class="md-nav__link">
+    5.3- Visualization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-transforms" class="md-nav__link">
+    6- Transforms
+  </a>
+  
+    <nav class="md-nav" aria-label="6- Transforms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-train-and-validation-dataset-transforms" class="md-nav__link">
+    6.1- Train and Validation Dataset Transforms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dataset" class="md-nav__link">
+    7- Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="7- Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-displaying-the-same-image-with-different-transforms" class="md-nav__link">
+    7.1- Displaying the same image with different transforms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-model" class="md-nav__link">
+    8- Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-dataloader" class="md-nav__link">
+    9- DataLoader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-training" class="md-nav__link">
+    10- Training
+  </a>
+  
+    <nav class="md-nav" aria-label="10- Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#100-metrics" class="md-nav__link">
+    10.0 - Metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#101-training-using-fastai" class="md-nav__link">
+    10.1- Training using fastai
+  </a>
+  
+    <nav class="md-nav" aria-label="10.1- Training using fastai">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1011-creating-a-learner-object" class="md-nav__link">
+    10.1.1- Creating a Learner object
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1012-training-the-rcnn-model-using-fastai-fine_tune-method" class="md-nav__link">
+    10.1.2- Training the RCNN model using fastai fine_tune() method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-training-using-pytorch-lightning" class="md-nav__link">
+    10.2- Training using Pytorch-Lightning
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2- Training using Pytorch-Lightning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1021-creating-a-pytorch-lightning-pl-model-class" class="md-nav__link">
+    10.2.1- Creating a Pytorch-Lightning (PL) model class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1022-training-the-rcnn-model-using-pl-trainerfit-method" class="md-nav__link">
+    10.2.2- Training the RCNN model using PL Trainer.fit() method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-inference" class="md-nav__link">
+    11- Inference
+  </a>
+  
+    <nav class="md-nav" aria-label="11- Inference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-load-a-model" class="md-nav__link">
+    11.1- Load a model
+  </a>
+  
+    <nav class="md-nav" aria-label="11.1- Load a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#112-using-our-trained-weights" class="md-nav__link">
+    11.2- Using our Trained Weights
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-predict-all-images-at-once" class="md-nav__link">
+    11.3- Predict all images at once
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-predicting-a-batch-of-images" class="md-nav__link">
+    11.4- Predicting a batch of images
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#happy-learning" class="md-nav__link">
+    Happy Learning!
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../custom_parser/" title="Custom Parser" class="md-nav__link">
+      Custom Parser
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../how_train_dataset/" title="Training a dataset" class="md-nav__link">
+      Training a dataset
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dataset_voc_nb/" title="Training a VOC dataset" class="md-nav__link">
+      Training a VOC dataset
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Examples
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Examples" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Examples
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/birds_exp/" title="Birds" class="md-nav__link">
+      Birds
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/coco_exp/" title="COCO" class="md-nav__link">
+      COCO
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/fridge_exp/" title="Fridge Objects" class="md-nav__link">
+      Fridge Objects
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/pennfudan_exp/" title="PennFudan" class="md-nav__link">
+      PennFudan
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/pets_exp/" title="PETS" class="md-nav__link">
+      PETS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/voc_exp/" title="Pascal VOC 2012" class="md-nav__link">
+      Pascal VOC 2012
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../birds/" title="Birds" class="md-nav__link">
+      Birds
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../biwi/" title="Biwi" class="md-nav__link">
+      Biwi
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../coco/" title="Coco" class="md-nav__link">
+      Coco
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fridge/" title="Fridge" class="md-nav__link">
+      Fridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ochuman/" title="Ochuman" class="md-nav__link">
+      Ochuman
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pennfudan/" title="Pennfudan" class="md-nav__link">
+      Pennfudan
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pets/" title="Pets" class="md-nav__link">
+      Pets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../voc/" title="Voc" class="md-nav__link">
+      Voc
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      API Documentation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="API Documentation" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        API Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-1" type="checkbox" id="nav-6-1">
+    
+    <label class="md-nav__link" for="nav-6-1">
+      COCO
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="COCO" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-1">
+        <span class="md-nav__icon md-icon"></span>
+        COCO
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../coco_data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6-2" type="checkbox" id="nav-6-2">
+    
+    <label class="md-nav__link" for="nav-6-2">
+      Fridge
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fridge" data-md-level="2">
+      <label class="md-nav__title" for="nav-6-2">
+        <span class="md-nav__icon md-icon"></span>
+        Fridge
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fridge_data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fridge_parser/" title="Parsers" class="md-nav__link">
+      Parsers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../parsing_cheatsheet/" title="Parsing Cheatsheet" class="md-nav__link">
+      Parsing Cheatsheet
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../datasets_tools/" title="Datasets Tools" class="md-nav__link">
+      Datasets Tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../how-to/" title="How-To" class="md-nav__link">
+      How-To
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Contributing Guide" class="md-nav__link">
+      Contributing Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../readme.md" title="Generating Docs" class="md-nav__link">
+      Generating Docs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-12" type="checkbox" id="nav-12">
+    
+    <label class="md-nav__link" for="nav-12">
+      Preferences
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Preferences" data-md-level="1">
+      <label class="md-nav__title" for="nav-12">
+        <span class="md-nav__icon md-icon"></span>
+        Preferences
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../changing-the-colors/" title="Changing the colors" class="md-nav__link">
+      Changing the colors
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../code_of_conduct/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-icevision" class="md-nav__link">
+    Why IceVision?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction" class="md-nav__link">
+    1- Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-using-google-colab" class="md-nav__link">
+    2- Using Google Colab
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-packages-installations" class="md-nav__link">
+    3- Packages Installations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-imports" class="md-nav__link">
+    4- Imports
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-datasets-pets-example" class="md-nav__link">
+    5- Datasets : PETS example
+  </a>
+  
+    <nav class="md-nav" aria-label="5- Datasets : PETS example">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-parser" class="md-nav__link">
+    5.1- Parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-split-the-dataset" class="md-nav__link">
+    5.2- Split the dataset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-parsing-data" class="md-nav__link">
+    5.3- Parsing data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-visualization" class="md-nav__link">
+    5.3- Visualization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-transforms" class="md-nav__link">
+    6- Transforms
+  </a>
+  
+    <nav class="md-nav" aria-label="6- Transforms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-train-and-validation-dataset-transforms" class="md-nav__link">
+    6.1- Train and Validation Dataset Transforms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-dataset" class="md-nav__link">
+    7- Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="7- Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-displaying-the-same-image-with-different-transforms" class="md-nav__link">
+    7.1- Displaying the same image with different transforms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-model" class="md-nav__link">
+    8- Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-dataloader" class="md-nav__link">
+    9- DataLoader
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-training" class="md-nav__link">
+    10- Training
+  </a>
+  
+    <nav class="md-nav" aria-label="10- Training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#100-metrics" class="md-nav__link">
+    10.0 - Metrics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#101-training-using-fastai" class="md-nav__link">
+    10.1- Training using fastai
+  </a>
+  
+    <nav class="md-nav" aria-label="10.1- Training using fastai">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1011-creating-a-learner-object" class="md-nav__link">
+    10.1.1- Creating a Learner object
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1012-training-the-rcnn-model-using-fastai-fine_tune-method" class="md-nav__link">
+    10.1.2- Training the RCNN model using fastai fine_tune() method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-training-using-pytorch-lightning" class="md-nav__link">
+    10.2- Training using Pytorch-Lightning
+  </a>
+  
+    <nav class="md-nav" aria-label="10.2- Training using Pytorch-Lightning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1021-creating-a-pytorch-lightning-pl-model-class" class="md-nav__link">
+    10.2.1- Creating a Pytorch-Lightning (PL) model class
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1022-training-the-rcnn-model-using-pl-trainerfit-method" class="md-nav__link">
+    10.2.2- Training the RCNN model using PL Trainer.fit() method
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-inference" class="md-nav__link">
+    11- Inference
+  </a>
+  
+    <nav class="md-nav" aria-label="11- Inference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-load-a-model" class="md-nav__link">
+    11.1- Load a model
+  </a>
+  
+    <nav class="md-nav" aria-label="11.1- Load a model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#112-using-our-trained-weights" class="md-nav__link">
+    11.2- Using our Trained Weights
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-predict-all-images-at-once" class="md-nav__link">
+    11.3- Predict all images at once
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-predicting-a-batch-of-images" class="md-nav__link">
+    11.4- Predicting a batch of images
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#happy-learning" class="md-nav__link">
+    Happy Learning!
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <p><a href="https://colab.research.google.com/github/airctic/icevision/blob/master/notebooks/getting_started.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<h1 id="getting-started-with-icevision">Getting started with IceVision</h1>
+<p><img alt="" src="https://airctic.github.io/icevisionages/iceicevisionpng" /></p>
+<h2 id="why-icevision">Why IceVision?</h2>
+<ul>
+<li>
+<p>It is an Agnostic Object-Detection Library</p>
+</li>
+<li>
+<p>Connects to different libraries/framework such as fastai, Pytorch Lightning, and Pytorch</p>
+</li>
+<li>
+<p>Features a Unified Data API such: common Parsers (COCO, VOC, etc.)</p>
+</li>
+<li>
+<p>Integrates community maintaned parsers for custom datasets shared on parsers hub</p>
+</li>
+<li>
+<p>Provides flexible model implementations using different backbones</p>
+</li>
+<li>
+<p>Helps both researchers and DL engineers in reproducing, replicating published models</p>
+</li>
+<li>
+<p>Facilitates applying both existing and new models to standard datasets as well as to Scustom datasets</p>
+</li>
+</ul>
+<h2 id="1-introduction">1- Introduction</h2>
+<p>This tutorial walk you throug the different steps of training the PETS dataset. the IceVision Framework is an <strong>agnostic framework</strong>. As an illustration, we will train our model using both the <a href="https://github.com/fastai/fastai2">fastai2</a>, and <a href="https://github.com/PyTorchLightning/pytorch-lightning">pytorch-lightning</a> library.</p>
+<h2 id="2-using-google-colab">2- Using Google Colab</h2>
+<p>First, enable the GPU runtime:<br />
+<code>Runtime</code> -&gt; <code>Change runtime type</code> -&gt; <code>Hardware accelerator dropdown</code> -&gt; <code>GPU</code>  </p>
+<h2 id="3-packages-installations">3- Packages Installations</h2>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install IceVision package</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">airctic</span><span class="o">/</span><span class="n">icevisiont</span><span class="c1">#egg=iceicevision--upgrade</span>
+</code></pre></div>
+<h2 id="4-imports">4- Imports</h2>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">icevision.all</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre></div>
+<h2 id="5-datasets-pets-example">5- Datasets : PETS example</h2>
+<p>IceVision provides very handy methods such as loading a dataset, parsing annotations, and more. In the example below, loading the PETS dataset is one line code. So is the pasrser.</p>
+<div class="highlight"><pre><span></span><code><span class="n">path</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">pets</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+<span class="n">path</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>Path(&#39;/root/.icevisionta/pets&#39;)
+</code></pre></div>
+</div>
+<h3 id="51-parser">5.1- Parser</h3>
+<p>The <code>Parser</code> is one of the most important concepts of icevisiont's what allow us to work with <strong>any</strong> annotation format.</p>
+<p>The basic idea of a parser is to convert any custom format to something the library can understand. We provide a wide variety of parsers via the <code>datasets</code> modules (each dataset will come with it's own parser), but you might still need to create a custom parser for your custom dataset. Fear not! Creating parsers is very easy, after you're finished with this tutorial, check this <a href="https://airctic.github.io/icevision/custom_parser/">documentation section</a> to understand how to do so.</p>
+<p>IceVision already provide a <code>parser</code> for the Pets Dataset</p>
+<div class="highlight"><pre><span></span><code><span class="n">class_map</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">pets</span><span class="o">.</span><span class="n">class_map</span><span class="p">()</span>
+<span class="n">class_map</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">parser</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">pets</span><span class="o">.</span><span class="n">parser</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">class_map</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>&lt;ClassMap: {&#39;background&#39;: 0, &#39;Abyssinian&#39;: 1, &#39;Bengal&#39;: 2, &#39;Birman&#39;: 3, &#39;Bombay&#39;: 4, &#39;British_Shorthair&#39;: 5, &#39;Egyptian_Mau&#39;: 6, &#39;Maine_Coon&#39;: 7, &#39;Persian&#39;: 8, &#39;Ragdoll&#39;: 9, &#39;Russian_Blue&#39;: 10, &#39;Siamese&#39;: 11, &#39;Sphynx&#39;: 12, &#39;american_bulldog&#39;: 13, &#39;american_pit_bull_terrier&#39;: 14, &#39;basset_hound&#39;: 15, &#39;beagle&#39;: 16, &#39;boxer&#39;: 17, &#39;chihuahua&#39;: 18, &#39;english_cocker_spaniel&#39;: 19, &#39;english_setter&#39;: 20, &#39;german_shorthaired&#39;: 21, &#39;great_pyrenees&#39;: 22, &#39;havanese&#39;: 23, &#39;japanese_chin&#39;: 24, &#39;keeshond&#39;: 25, &#39;leonberger&#39;: 26, &#39;miniature_pinscher&#39;: 27, &#39;newfoundland&#39;: 28, &#39;pomeranian&#39;: 29, &#39;pug&#39;: 30, &#39;saint_bernard&#39;: 31, &#39;samoyed&#39;: 32, &#39;scottish_terrier&#39;: 33, &#39;shiba_inu&#39;: 34, &#39;staffordshire_bull_terrier&#39;: 35, &#39;wheaten_terrier&#39;: 36, &#39;yorkshire_terrier&#39;: 37}&gt;
+</code></pre></div>
+</div>
+<h3 id="52-split-the-dataset">5.2- Split the dataset</h3>
+<p>Next step is to define the <code>train/valid</code> splits for the data, let's use random splits for this one:</p>
+<div class="highlight"><pre><span></span><code><span class="n">data_splitter</span> <span class="o">=</span> <span class="n">RandomSplitter</span><span class="p">([</span><span class="o">.</span><span class="mi">8</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="53-parsing-data">5.3- Parsing data</h3>
+<p>Calling the <code>parse()</code> by passing the data splitter returns 2 records lists: one for the training and another for the validation datasets. </p>
+<div class="highlight"><pre><span></span><code><span class="n">train_records</span><span class="p">,</span> <span class="n">valid_records</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data_splitter</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>HBox(children=(FloatProgress(value=0.0, max=3686.0), HTML(value=&#39;&#39;)))
+</code></pre></div>
+</div>
+
+<div class="admonition info">
+<p class="admonition-title">What's a record?</p>
+<p>A record is a dictionary that contains all parsed fields defined by the parser used.
+No matter what format the annotations used, a record has a common structure that can be connected to different DL frameworks (fastai, Pytorch-Lightning, etc.)</p>
+</div>
+<h3 id="53-visualization">5.3- Visualization</h3>
+<p>Showing one single record (image + box + label)</p>
+<div class="highlight"><pre><span></span><code><span class="n">show_record</span><span class="p">(</span><span class="n">train_records</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+<p><img alt="png" src="../images/getting_started/getting_started_20_0.png" /></p>
+<p>Showing label instead of the class ID</p>
+<div class="highlight"><pre><span></span><code><span class="n">show_record</span><span class="p">(</span><span class="n">train_records</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">class_map</span><span class="o">=</span><span class="n">class_map</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/getting_started/getting_started_22_0.png" /></p>
+<p>Showing a batch of images with their corresponding boxes and labels</p>
+<div class="highlight"><pre><span></span><code><span class="n">records</span> <span class="o">=</span> <span class="n">train_records</span><span class="p">[:</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">show_records</span><span class="p">(</span><span class="n">records</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">class_map</span><span class="o">=</span><span class="n">class_map</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/getting_started/getting_started_24_0.png" /></p>
+<h2 id="6-transforms">6- Transforms</h2>
+<p>Transforms is an essential stage of any training pipeline, you can find a multitude of different transforms libraries online: <a href="https://github.com/albumentations-team/albumentations">albumentations</a>, <a href="https://github.com/MIPT-Oulu/solt">solt</a>, <a href="https://pytorch.org/docs/stable/torchvision/transforms.html#transforms-on-pil-image">torchvision</a>, only to cite a few.</p>
+<p>With icevisionu can use any transforms library, you just need to inherit and override all abstract methods of the <code>Transform</code> class.</p>
+<p>To ease the user experience, we support for the widely used <a href="https://github.com/albumentations-team/albumentations">albumentations</a> library, out-of-the-box. We plan to add more, in the future.</p>
+<h3 id="61-train-and-validation-dataset-transforms">6.1- Train and Validation Dataset Transforms</h3>
+<div class="highlight"><pre><span></span><code><span class="n">presize</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">384</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">train_tfms</span> <span class="o">=</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Adapter</span><span class="p">([</span><span class="o">*</span><span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">aug_tfms</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">size</span><span class="p">,</span> <span class="n">presize</span><span class="o">=</span><span class="n">presize</span><span class="p">),</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Normalize</span><span class="p">()])</span>
+<span class="n">valid_tfms</span> <span class="o">=</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Adapter</span><span class="p">([</span><span class="o">*</span><span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">resize_and_pad</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Normalize</span><span class="p">()])</span>
+</code></pre></div>
+<h2 id="7-dataset">7- Dataset</h2>
+<p>Not to be confused with our previous <code>datasets</code> module, <code>Dataset</code> is a class that combines the records and transforms.</p>
+<p>For creating a <code>Dataset</code> we just need need to pass the parsed records from the previous step and optionally the transforms.</p>
+<div class="highlight"><pre><span></span><code><span class="n">train_ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">train_records</span><span class="p">,</span> <span class="n">train_tfms</span><span class="p">)</span>
+<span class="n">valid_ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">valid_records</span><span class="p">,</span> <span class="n">valid_tfms</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">What a <code>Dataset</code> class  does?</p>
+<ul>
+<li>Prepares the record: For example, in the record we just have a filename that points to the image, it's at this stage that we open the image.  </li>
+<li>Apply the pipeline of transforms to record processed in the previous step</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Lazy transforms</p>
+<p>Transforms are applied <strong>lazily</strong>, meaning they are only applied when we grab (get) an item.<br />
+This means that, if you have augmentation (random) transforms, each time you get the <strong>same</strong> item from 
+the dataset you will get a slightly different version of it.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Important</p>
+<p>Because we normalized our images with <code>imagenet_stats</code>, when displaying transformed images,  we need to denormalize them.<br />
+The <code>show_sample</code> function receives an optional argument called <code>denormalize_fn</code> that we can be passed: In our case, we pass <code>denormalize_imagenet</code>.</p>
+</div>
+<h3 id="71-displaying-the-same-image-with-different-transforms">7.1- Displaying the same image with different transforms</h3>
+<div class="highlight"><pre><span></span><code><span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_ds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)]</span>
+<span class="n">show_samples</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">class_map</span><span class="o">=</span><span class="n">class_map</span><span class="p">,</span> <span class="n">denormalize_fn</span><span class="o">=</span><span class="n">denormalize_imagenet</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/getting_started/getting_started_35_0.png" /></p>
+<p>In this tutorial, we need to only predict bounding boxes, therefore we will use <code>FasterRCNN</code>. The only required argument we need to pass to the model is the number of classes of our dataset (which is simply the length of <code>datasets.pets.CATEGORIES</code>) + 1 for the background.</p>
+<h2 id="8-model">8- Model</h2>
+<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">class_map</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="9-dataloader">9- DataLoader</h2>
+<p>Each model has its own dataloader (a pytorch <code>DataLoader</code>) that ccould be customized: the dataloaders for the RCNN models have a custom collate function.</p>
+<div class="highlight"><pre><span></span><code><span class="n">train_dl</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">train_dl</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_dl</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">valid_dl</span><span class="p">(</span><span class="n">valid_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="10-training">10- Training</h2>
+<p>IceVision is an agnostic framework meaning it can be plugged to other DL framework such as <a href="https://github.com/fastai/fastai2">fastai2</a>, and <a href="https://github.com/PyTorchLightning/pytorch-lightning">pytorch-lightning</a>.  </p>
+<p>You could also plug to others DL frameworks using your own custom code.</p>
+<h3 id="100-metrics">10.0 - Metrics</h3>
+<p>Metrics are essential for tracking the model progress as it's training.<br />
+Here we are going to be using the famous <code>COCOMetric</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">COCOMetric</span><span class="p">(</span><span class="n">metric_type</span><span class="o">=</span><span class="n">COCOMetricType</span><span class="o">.</span><span class="n">bbox</span><span class="p">)]</span>
+</code></pre></div>
+<h3 id="101-training-using-fastai">10.1- Training using fastai</h3>
+<h4 id="1011-creating-a-learner-object">10.1.1- Creating a Learner object</h4>
+<p>Creating a fastai compatible <code>Learner</code> using the fastai familiar interface </p>
+<div class="highlight"><pre><span></span><code><span class="n">learn</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">fastai</span><span class="o">.</span><span class="n">learner</span><span class="p">(</span><span class="n">dls</span><span class="o">=</span><span class="p">[</span><span class="n">train_dl</span><span class="p">,</span> <span class="n">valid_dl</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="1012-training-the-rcnn-model-using-fastai-fine_tune-method">10.1.2- Training the RCNN model using fastai <code>fine_tune()</code> method</h4>
+<div class="highlight"><pre><span></span><code><span class="n">learn</span><span class="o">.</span><span class="n">fine_tune</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="102-training-using-pytorch-lightning">10.2- Training using Pytorch-Lightning</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># import lightning engine provided by the icevisiondules</span>
+<span class="kn">import</span> <span class="nn">pytorch_lightning</span> <span class="k">as</span> <span class="nn">pl</span>
+</code></pre></div>
+<h4 id="1021-creating-a-pytorch-lightning-pl-model-class">10.2.1- Creating a Pytorch-Lightning (PL) model class</h4>
+<p>It inherits from <code>RCNNLightningAdapter</code> and implements the method PL <code>configure_optimizers</code>.  </p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">LightModel</span><span class="p">(</span><span class="n">faster_rcnn</span><span class="o">.</span><span class="n">lightning</span><span class="o">.</span><span class="n">ModelAdapter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">configure_optimizers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">SGD</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+</code></pre></div>
+<div class="alert alert-info">
+
+**Note:**
+
+If you are used with lightning, you may be wondering what happened with `training_step`, `validation_step` and methods that we ussually have to override while using PL. Under the hood `RCNNLightningAdapter` implements those methods with the additional bennefit of supporting `Metric`s.  
+
+If you need more custom functionality, feel free to re-implement those methods.  
+
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># Creating a PL model object</span>
+<span class="n">light_model</span> <span class="o">=</span> <span class="n">LightModel</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="1022-training-the-rcnn-model-using-pl-trainerfit-method">10.2.2- Training the RCNN model using PL <code>Trainer.fit()</code> method</h4>
+<div class="highlight"><pre><span></span><code><span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">max_epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">gpus</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">light_model</span><span class="p">,</span> <span class="n">train_dl</span><span class="p">,</span> <span class="n">valid_dl</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="11-inference">11- Inference</h2>
+<h3 id="111-load-a-model">11.1- Load a model</h3>
+<p>Training the model with <code>fastai</code> using <code>fine_tune</code> twice and I got led the the following results:<br />
+<em> train_loss: 0.06772<br />
+</em> valid_loss: 0.074435  </p>
+<h4 id="112-using-our-trained-weights">11.2- Using our Trained Weights</h4>
+<p>If you don't want to train the model, you can use our rained weights that we publicly made vailable: You can download them with <code>torch.hub</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">weights_url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/airctic/model_zoo/releases/download/pets_faster_resnet50fpn/pets_faster_resnetfpn50.zip&quot;</span>
+<span class="n">state_dict</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">hub</span><span class="o">.</span><span class="n">load_state_dict_from_url</span><span class="p">(</span><span class="n">weights_url</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">))</span>
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Note</p>
+<p>Typically inference is done on the cpu, this is why we specify the paramater <code>map_location</code> to <code>cpu</code> when loading the state dict.</p>
+</div>
+<p>Let's recreate the model and load the downloaded weights:</p>
+<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">num_classes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">class_map</span><span class="p">))</span>
+<span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>&lt;All keys matched successfully&gt;
+</code></pre></div>
+</div>
+<p>The first step for prediction is to have some images, let's grab some random ones from the validation dataset:</p>
+<h3 id="113-predict-all-images-at-once">11.3- Predict all images at once</h3>
+<p>If you don't have too many images, you can get predictions with a single forward pass.  </p>
+<p>In case your images don't fit in memory simultaneously, you should predict in batches, feel free to jump to the next section for how to do that.</p>
+<p>For demonstration purposes, let's take download a single image from the internet and see how our model performs on it.</p>
+<div class="highlight"><pre><span></span><code><span class="n">IMAGE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://petcaramelo.com/wp-content/uploads/2018/06/beagle-cachorro.jpg&quot;</span>
+<span class="n">IMG_PATH</span> <span class="o">=</span> <span class="s2">&quot;tmp.jpg&quot;</span>
+
+<span class="n">download_url</span><span class="p">(</span><span class="n">IMAGE_URL</span><span class="p">,</span> <span class="n">IMG_PATH</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">open_img</span><span class="p">(</span><span class="n">IMG_PATH</span><span class="p">)</span>
+<span class="n">show_img</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>HBox(children=(FloatProgress(value=0.0, max=107007.0), HTML(value=&#39;&#39;)))
+</code></pre></div>
+</div>
+
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7faa481cfb70&gt;
+</code></pre></div>
+</div>
+
+<p><img alt="png" src="../images/getting_started/getting_started_67_3.png" /></p>
+<div class="admonition info">
+<p class="admonition-title">Try other images!</p>
+<p>Change <code>IMAGE_URL</code> to point to another image you found on the internet.<br />
+Just be sure to take one of the breeds from <code>class_map</code>, or else the model might get confused.</p>
+</div>
+<p>Whenever you have images in memory (numpy arrays) you can use <code>Dataset.from_images</code>.  </p>
+<p>We're going to use the same transforms we used on the validation dataset.</p>
+<div class="highlight"><pre><span></span><code><span class="n">infer_ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_images</span><span class="p">([</span><span class="n">img</span><span class="p">],</span> <span class="n">valid_tfms</span><span class="p">)</span>
+</code></pre></div>
+<p>For any model, the prediction steps are always the same, first call <code>build_infer_batch</code> and then <code>predict</code>.</p>
+<p>For <code>faster_rcnn</code> we have <code>detection_threshold</code>, which specifies how confident the model should be to output a bounding box.</p>
+<div class="highlight"><pre><span></span><code><span class="n">batch</span><span class="p">,</span> <span class="n">samples</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">build_infer_batch</span><span class="p">(</span><span class="n">infer_ds</span><span class="p">)</span>
+<span class="n">preds</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">batch</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span>
+</code></pre></div>
+<p>For displaying the predictions, we first need to grab our image from <code>samples</code>. We do this instead of using the original images because transforms may have been applied to the image (in fact, in this case, a resize was used).</p>
+<div class="highlight"><pre><span></span><code><span class="n">imgs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+</code></pre></div>
+<p>Now we just need to call <code>show_preds</code>, to show the image with its corresponding predictions (boxes + labels).</p>
+<div class="highlight"><pre><span></span><code><span class="n">show_preds</span><span class="p">(</span>
+    <span class="n">imgs</span><span class="o">=</span><span class="n">imgs</span><span class="p">,</span>
+    <span class="n">preds</span><span class="o">=</span><span class="n">preds</span><span class="p">,</span>
+    <span class="n">class_map</span><span class="o">=</span><span class="n">class_map</span><span class="p">,</span>
+    <span class="n">denormalize_fn</span><span class="o">=</span><span class="n">denormalize_imagenet</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/getting_started/getting_started_76_0.png" /></p>
+<h3 id="114-predicting-a-batch-of-images">11.4- Predicting a batch of images</h3>
+<p>Instead of predicting a whole list of images at one, we can process small batch at the time: This option is more memory efficient: We use <code>infer_dataloader</code> </p>
+<p>Had we have a test dataset, we would have maken our predicition using the batch technique mentionned here above. As an illustrative example, we will predict all images belonging to the validation dataset using the following approach: </p>
+<div class="highlight"><pre><span></span><code><span class="n">infer_dl</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">infer_dl</span><span class="p">(</span><span class="n">valid_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">samples</span><span class="p">,</span> <span class="n">preds</span> <span class="o">=</span> <span class="n">faster_rcnn</span><span class="o">.</span><span class="n">predict_from_dl</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">infer_dl</span><span class="o">=</span><span class="n">infer_dl</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>HBox(children=(FloatProgress(value=0.0, max=47.0), HTML(value=&#39;&#39;)))
+</code></pre></div>
+</div>
+
+<p>Same as before, we grab our images from <code>samples</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">imgs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sample</span><span class="p">[</span><span class="s2">&quot;img&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="n">samples</span><span class="p">]</span>
+</code></pre></div>
+<p>Let's show the first 6 predictions:</p>
+<div class="highlight"><pre><span></span><code><span class="n">show_preds</span><span class="p">(</span>
+    <span class="n">imgs</span><span class="o">=</span><span class="n">imgs</span><span class="p">[:</span><span class="mi">6</span><span class="p">],</span>
+    <span class="n">preds</span><span class="o">=</span><span class="n">preds</span><span class="p">[:</span><span class="mi">6</span><span class="p">],</span>
+    <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">class_map</span><span class="o">=</span><span class="n">class_map</span><span class="p">,</span>
+    <span class="n">denormalize_fn</span><span class="o">=</span><span class="n">denormalize_imagenet</span><span class="p">,</span>
+    <span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/getting_started/getting_started_82_0.png" /></p>
+<h2 id="happy-learning">Happy Learning!</h2>
+<p>If you need any assistance, feel free to join our <a href="https://spectrum.chat/mantis">forum</a>.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../install/" title="Installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../custom_parser/" title="Custom Parser" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Custom Parser
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            airctic.com
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js"></script>
+      
+        <script src="../js/termynal.js"></script>
+      
+        <script src="../js/custom.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3"></script>
+      
+        <script src="../js/crate.js"></script>
+      
+    
+  </body>
+</html>
