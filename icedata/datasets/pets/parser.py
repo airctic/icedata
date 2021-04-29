@@ -3,9 +3,10 @@ __all__ = ["parser", "PetsBBoxParser", "PetsMaskParser", "PetsMaskFile"]
 from icevision.imports import *
 from icevision.core import *
 from icevision import parsers
+from .data import *
 
 
-def parser(data_dir: Path, class_map: ClassMap, mask=False):
+def parser(data_dir: Path, mask=False):
     annotations_dir = data_dir / "annotations/xmls"
     images_dir = data_dir / "images"
     masks_dir = data_dir / "annotations/trimaps"
@@ -14,7 +15,7 @@ def parser(data_dir: Path, class_map: ClassMap, mask=False):
         parser = PetsBBoxParser(
             annotations_dir=annotations_dir,
             images_dir=images_dir,
-            class_map=class_map,
+            class_map=class_map(),
         )
 
     else:
@@ -22,7 +23,7 @@ def parser(data_dir: Path, class_map: ClassMap, mask=False):
             annotations_dir=annotations_dir,
             images_dir=images_dir,
             masks_dir=masks_dir,
-            class_map=class_map,
+            class_map=class_map(),
         )
 
     return parser
