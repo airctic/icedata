@@ -2,7 +2,7 @@ __all__ = ["dataset"]
 
 from icevision.all import *
 from torch.utils import data
-from icedata.datasets.exdark.parser import *
+from icedata.datasets.exdark_trimmed.parser import *
 import icevision.tfms as tfms
 
 
