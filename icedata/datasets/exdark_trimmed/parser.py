@@ -62,6 +62,13 @@ class ExDarkParser(Parser):
         self.lighting_class_map = ClassMap(self.LIGHTING_CLASSES, background=None)
         self.location_class_map = ClassMap(self.LOCATION_CLASSES, background=None)
 
+        # Convenience container
+        self.CLASS_MAPS = dict(
+            detection=self.object_class_map,
+            lighting=self.lighting_class_map,
+            location=self.location_class_map,
+        )
+
     def __iter__(self) -> Any:
         for line in self.classification_annotation_lines:
             yield line, tasks.classification
