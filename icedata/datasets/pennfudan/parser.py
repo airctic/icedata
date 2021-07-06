@@ -33,7 +33,7 @@ class PennFundanParser(Parser):
                 FilepathRecordComponent(),
                 InstancesLabelsRecordComponent(),
                 BBoxesRecordComponent(),
-                MasksRecordComponent(),
+                InstanceMasksRecordComponent(),
             )
         )
 
