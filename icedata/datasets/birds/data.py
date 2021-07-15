@@ -15,7 +15,7 @@ def load_data(force_download: bool = False) -> Path:
     data_dir = get_data_dir() / "birds"
     data_dir.mkdir(exist_ok=True, parents=True)
 
-    if not data_dir.exists() or force_download:
+    if not len(data_dir.ls()) == 0 or force_download:
         download_and_extract_gdrive(
             url=images_url, filename="images.tgz", extract_dir=data_dir
         )

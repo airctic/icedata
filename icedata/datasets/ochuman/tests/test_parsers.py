@@ -11,21 +11,8 @@ def test_parser(data_dir):
     assert len(records) == 10
     record = records[3]
 
-    expected = {
-        "bboxes",
-        "class_map",
-        "filepath",
-        "height",
-        "imageid",
-        "keypoints",
-        "labels",
-        "width",
-    }
-
-    assert set(record.keys()) == expected
-
-    assert record["filepath"].name == "000004.jpg"
-    assert record["imageid"] == 3
-    assert record["labels"] == [1, 1]
-    assert record["height"] == 333
-    assert record["width"] == 500
+    assert record.filepath.name == "000004.jpg"
+    assert record.record_id == 3
+    assert record.detection.labels == ["person", "person"]
+    assert record.height == 333
+    assert record.width == 500

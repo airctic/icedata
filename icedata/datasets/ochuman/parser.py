@@ -1,6 +1,7 @@
 __all__ = ["parser"]
 
 from icevision.all import *
+from icevision.core.record_defaults import KeypointsRecord
 
 
 def parser(annotations_path: Union[str, Path], img_dir_path: Union[str, Path]):
@@ -68,9 +69,10 @@ class OCHKeypointsMetadata(KeypointsMetadata):
 
 class OCHumanParser(Parser):
     def __init__(self, annotations_filepath, img_dir):
-        raise NotImplementedError("Has to be refactored to new API")
+        super().__init__(template_record=self.template_record())
         self.annotations_dict = json.loads(Path(annotations_filepath).read_bytes())
         self.img_dir = Path(img_dir)
+        self.class_map = ClassMap(["person"])
 
     def __iter__(self):
         yield from self.annotations_dict["images"]
@@ -78,8 +80,21 @@ class OCHumanParser(Parser):
     def __len__(self):
         return len(self.annotations_dict["images"])
 
-    def imageid(self, o):
+    def template_record(self):
+        return KeypointsRecord()
+
+    def record_id(self, o):
         return int(o["image_id"])
+
+    def parse_fields(self, o, record: BaseRecord, is_new: bool) -> None:
+        if is_new:
+            record.set_filepath(self.filepath(o))
+            record.set_img_size(self.image_width_height(o))
+            record.detection.set_class_map(self.class_map)
+
+        record.detection.add_labels(self.labels(o))
+        record.detection.add_bboxes(self.bboxes(o))
+        record.detection.add_keypoints(self.keypoints(o))
 
     def filepath(self, o):
         return self.img_dir / o["file_name"]
@@ -92,10 +107,10 @@ class OCHumanParser(Parser):
         ]
 
     def image_width_height(self, o) -> Tuple[int, int]:
-        return get_image_size(self.filepath(o))
+        return get_img_size(self.filepath(o))
 
     def labels(self, o) -> List[Hashable]:
-        return [1 for ann in o["annotations"] if ann["keypoints"] is not None]
+        return ["person" for ann in o["annotations"] if ann["keypoints"] is not None]
 
     def bboxes(self, o) -> List[BBox]:
         return [

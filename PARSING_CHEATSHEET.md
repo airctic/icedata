@@ -27,7 +27,7 @@ def width(self, o) -> int:
 def filepath(self, o) -> Union[str, Path]:
 def bboxes(self, o) -> List[BBox]:
 def labels(self, o) -> List[int]:
-def imageid(self, o) -> Hashable:
+def record_id(self, o) -> Hashable:
 ```
 
 If, for example, all the images are `.jpg` and located in the `data_dir` folder, the `image_paths` attribute will be set as follow:
