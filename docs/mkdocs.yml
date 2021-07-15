@@ -59,8 +59,10 @@ nav:
     - Pascal VOC 2012: examples/voc_exp.md
   - Datasets:
     - Birds: birds.md
+    - Biwi: biwi.md
     - Coco: coco.md
     - Fridge: fridge.md
+    - Ochuman: ochuman.md
     - Pennfudan: pennfudan.md
     - Pets: pets.md
     - Voc: voc.md
