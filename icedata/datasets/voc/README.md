@@ -37,7 +37,8 @@ class_map = icedata.voc.class_map()
 data_splitter = RandomSplitter([0.8, 0.2])
 
 # VOC parser: provided out-of-the-box
-parser = icedata.voc.parser(data_dir=path, class_map=class_map)
+parser = parsers.VOCBBoxParser(annotations_dir= path/'Annotations', images_dir = path/'JPEGImages', class_map=class_map)
+
 train_records, valid_records = parser.parse(data_splitter)
 
 # shows images with corresponding labels and boxes
