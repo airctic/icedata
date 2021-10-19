@@ -5,9 +5,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
-### Added
+Compatible with icevision 0.10
+
 ### Changed
 - Added `gdrive` parameter to `load_data`
+- Bug fixes
+
 ### Deleted
 
 ## [0.2.0]
