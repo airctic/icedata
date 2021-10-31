@@ -10,7 +10,7 @@ def test_parser(data_dir):
     record = records[0]
 
     assert record.filepath.name == "FudanPed00001.png"
-    assert record.record_id == 0
+    assert record.record_id == 1
     assert record.detection.labels == ["person", "person"]
     assert record.height == 536
     assert record.width == 559
