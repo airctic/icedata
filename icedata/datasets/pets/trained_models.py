@@ -12,7 +12,9 @@ def _load_efficientdet(name, weights_url):
 
 
 def _load_faster_rcnn(backbone, weights_url):
-    model = faster_rcnn.model(num_classes=NUM_CLASSES, backbone=backbone)
+    model = models.torchvision.faster_rcnn.model(
+        num_classes=NUM_CLASSES, backbone=backbone
+    )
     load_model_weights_from_url(model=model, url=weights_url)
     return model
 

@@ -51,7 +51,7 @@ class PetsMaskFile(VocMaskFile):
     Removes the color pallete and optionally drops void pixels.
 
     Args:
-          drop_void (bool): drops the void pixels, which should have the value 255.
+        drop_void (bool): drops the void pixels, which should have the value 255.
     """
 
     def to_mask(self, h, w) -> MaskArray:
