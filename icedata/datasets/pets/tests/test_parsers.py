@@ -3,20 +3,21 @@ from icevision.all import *
 
 
 def test_parser(data_dir):
-    parser = icedata.pets.parser(data_dir, class_map=None, mask=True)
+    parser = icedata.pets.parser(data_dir, mask=True)
 
     records = parser.parse(data_splitter=SingleSplitSplitter())[0]
     assert len(records) == 5
     record = records[0]
 
     assert record.filepath.name == "Abyssinian_119.jpg"
-    assert record.record_id == 0
+    assert record.record_id == "Abyssinian_119"
     assert record.detection.labels == ["Abyssinian"]
     assert record.height == 297
     assert record.width == 300
 
     assert record.detection.bboxes == [BBox.from_xyxy(39, 51, 156, 179)]
-    assert record.detection.masks == EncodedRLEs(
+    print(record.detection.masks[0])
+    assert record.detection.masks[0].to_erles(None, None) == EncodedRLEs(
         [
             {
                 "size": [297, 300],
