@@ -159,7 +159,6 @@ def nb_to_md(dest_dir):
         )
 
 
-
 def generate(dest_dir: Path):
     template_dir = icedata_dir / "docs" / "templates"
     template_images_dir = Path(template_dir) / "images"
@@ -309,7 +308,6 @@ def generate(dest_dir: Path):
             from_to,
         )
 
-
     # Copy images folder from the template folder to the destination folder
     # print("Template folder: ", template_images_dir)
     dest_images_dir = Path(dest_dir) / "images"
@@ -348,7 +346,6 @@ def generate(dest_dir: Path):
 
     # Generate .md files form Jupyter Notebooks located in the /ipynb folder
     nb_to_md(dest_dir)
-
 
     ## generate - Datasets Navigation Items
     # Search for the beginning and the end of the installation procedure to hide in Docs to avoid duplication
