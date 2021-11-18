@@ -9,7 +9,19 @@ def dataset(
     size: int = 384,
     presize: int = 512,
     data_splitter: Optional[DataSplitter] = None,
+    task: str = "bbox",
 ):
+    if task == "bbbox":
+        parser = parsers.COCOBBoxParser
+    elif task == "mask":
+        parser = parsers.COCOMaskParser
+    elif task == "keypoints":
+        parser = parsers.COCOKeyPointsParser
+    else:
+        raise ValueError(
+            f"The 'task' argmument passed is '{task}'. 'task' argument must be one o these 3 values 'bbox', 'mask, or 'keypoints'. "
+        )
+
     _parser = parser(
         annotations_file=data_dir / "annotations.json", img_dir=data_dir / "images"
     )
