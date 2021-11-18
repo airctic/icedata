@@ -159,36 +159,6 @@ def nb_to_md(dest_dir):
         )
 
 
-def examples_to_md(dest_dir):
-    examples_dir = icedata_dir / "examples"
-    logger.opt(colors=True).log(
-        "INFO",
-        "️<green><bold>Examples folder: {}</></>",
-        examples_dir,
-    )
-
-    for file_path in os.listdir(examples_dir):
-        dir_path = examples_dir
-        file_name = file_path
-        nb_path = os.path.join(dir_path, file_path)
-        file_name_no_ext = os.path.splitext(file_name)[0]
-        ext = os.path.splitext(file_name)[1]
-
-        if ext != ".py":
-            continue
-
-        # md_path = os.path.join(dest_dir, 'tutorial', file_name_no_ext + '.md')
-        md_path = os.path.join(dest_dir, file_name_no_ext + ".md")
-
-        copy_examples(examples_dir, dest_dir / "examples")
-
-        from_to = f"{nb_path} -> {md_path}"
-        logger.opt(colors=True).log(
-            "INFO",
-            "️<green><bold>Copying Examples: {}</></>",
-            from_to,
-        )
-
 
 def generate(dest_dir: Path):
     template_dir = icedata_dir / "docs" / "templates"
@@ -228,7 +198,6 @@ def generate(dest_dir: Path):
         pages=PAGES,
         project_url="https://github.com/airctic/icedata/blob/master",
         template_dir=template_dir,
-        examples_dir=icedata_dir / "examples",
     )
     doc_generator.generate(dest_dir)
 
@@ -340,17 +309,6 @@ def generate(dest_dir: Path):
             from_to,
         )
 
-    ##
-    # Copy .md examples files to destination examples folder
-    dir_src = str(icedata_dir / "examples")
-    dir_dst = str(dest_dir / "examples")
-    copy_tree(dir_src, dir_dst)
-    from_to = f"{dir_src} -> {dir_dst}"
-    logger.opt(colors=True).log(
-        "INFO",
-        "️<green><bold>\nCopying examples files: {}</></>",
-        from_to,
-    )
 
     # Copy images folder from the template folder to the destination folder
     # print("Template folder: ", template_images_dir)
@@ -391,8 +349,6 @@ def generate(dest_dir: Path):
     # Generate .md files form Jupyter Notebooks located in the /ipynb folder
     nb_to_md(dest_dir)
 
-    # Generate .md files form python files located in the /examples folder
-    # examples_to_md(dest_dir)
 
     ## generate - Datasets Navigation Items
     # Search for the beginning and the end of the installation procedure to hide in Docs to avoid duplication
