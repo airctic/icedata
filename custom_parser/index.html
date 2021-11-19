@@ -1,0 +1,1646 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for IceData.">
+      
+      
+        <link rel="canonical" href="https://airctic.github.io/icedata/custom_parser/">
+      
+      
+        <meta name="author" content="Lucas Goulart Vazquez, Farid Hassainia, and Contributors">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Custom Parser - IceData</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.d3202873.min.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ff0a5ce4.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#2094f3">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+      <link rel="manifest" href="../manifest.webmanifest" crossorigin="use-credentials">
+    
+    
+      <link rel="stylesheet" href="../css/termynal.css">
+    
+      <link rel="stylesheet" href="../css/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#custom-parser-single-object-type" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://airctic.github.io/icedata/" title="IceData" class="md-header-nav__button md-logo" aria-label="IceData">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            IceData
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Custom Parser
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/airctic/IceData" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://airctic.github.io/icedata/" title="IceData" class="md-nav__button md-logo" aria-label="IceData">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    IceData
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/airctic/IceData" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../install/" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Tutorials
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Tutorials" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Tutorials
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Custom Parser
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Custom Parser" class="md-nav__link md-nav__link--active">
+      Custom Parser
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-parser-single-object-type" class="md-nav__link">
+    Custom Parser - Single Object Type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dataset" class="md-nav__link">
+    The Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="The Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-and-imports" class="md-nav__link">
+    Installation and Imports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-the-data-from-kaggle" class="md-nav__link">
+    Uploading the Data from Kaggle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-directories-to-allow-a-more-direct-route" class="md-nav__link">
+    Change Directories to allow a more direct route
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-exploration-of-the-compiled-annotations-in-the-csv-file" class="md-nav__link">
+    Quick Exploration of the compiled annotations in the CSV file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#establishing-paths" class="md-nav__link">
+    Establishing Paths
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parser" class="md-nav__link">
+    Parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transforms" class="md-nav__link">
+    Transforms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-and-validation-dataset-objects" class="md-nav__link">
+    Train and Validation Dataset Objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataloaders" class="md-nav__link">
+    DataLoaders
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics-and-learner" class="md-nav__link">
+    Metrics and Learner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Datasets
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Datasets" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Datasets
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../birds/" title="Birds" class="md-nav__link">
+      Birds
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../biwi/" title="Biwi" class="md-nav__link">
+      Biwi
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../coco/" title="Coco" class="md-nav__link">
+      Coco
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fridge/" title="Fridge" class="md-nav__link">
+      Fridge
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ochuman/" title="Ochuman" class="md-nav__link">
+      Ochuman
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pennfudan/" title="Pennfudan" class="md-nav__link">
+      Pennfudan
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../pets/" title="Pets" class="md-nav__link">
+      Pets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../voc/" title="Voc" class="md-nav__link">
+      Voc
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      API Documentation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="API Documentation" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        API Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
+    
+    <label class="md-nav__link" for="nav-5-1">
+      COCO
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="COCO" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-1">
+        <span class="md-nav__icon md-icon"></span>
+        COCO
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../coco_data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
+    
+    <label class="md-nav__link" for="nav-5-2">
+      Fridge
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Fridge" data-md-level="2">
+      <label class="md-nav__title" for="nav-5-2">
+        <span class="md-nav__icon md-icon"></span>
+        Fridge
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fridge_data/" title="Data" class="md-nav__link">
+      Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../fridge_parser/" title="Parsers" class="md-nav__link">
+      Parsers
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../datasets_tools/" title="Datasets Tools" class="md-nav__link">
+      Datasets Tools
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Contributing Guide" class="md-nav__link">
+      Contributing Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../readme.md" title="Generating Docs" class="md-nav__link">
+      Generating Docs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-9" type="checkbox" id="nav-9">
+    
+    <label class="md-nav__link" for="nav-9">
+      Preferences
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Preferences" data-md-level="1">
+      <label class="md-nav__title" for="nav-9">
+        <span class="md-nav__icon md-icon"></span>
+        Preferences
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../changing-the-colors/" title="Changing the colors" class="md-nav__link">
+      Changing the colors
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../code_of_conduct/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../about/" title="About" class="md-nav__link">
+      About
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#custom-parser-single-object-type" class="md-nav__link">
+    Custom Parser - Single Object Type
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dataset" class="md-nav__link">
+    The Dataset
+  </a>
+  
+    <nav class="md-nav" aria-label="The Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#installation-and-imports" class="md-nav__link">
+    Installation and Imports
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uploading-the-data-from-kaggle" class="md-nav__link">
+    Uploading the Data from Kaggle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#change-directories-to-allow-a-more-direct-route" class="md-nav__link">
+    Change Directories to allow a more direct route
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quick-exploration-of-the-compiled-annotations-in-the-csv-file" class="md-nav__link">
+    Quick Exploration of the compiled annotations in the CSV file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#establishing-paths" class="md-nav__link">
+    Establishing Paths
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parser" class="md-nav__link">
+    Parser
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transforms" class="md-nav__link">
+    Transforms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-and-validation-dataset-objects" class="md-nav__link">
+    Train and Validation Dataset Objects
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataloaders" class="md-nav__link">
+    DataLoaders
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics-and-learner" class="md-nav__link">
+    Metrics and Learner
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>Custom Parser</h1>
+                
+                <p><a href="https://colab.research.google.com/github/yrodriguezmd/icedata/blob/update-custom-parser/notebooks/custom_parser.ipynb" target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a></p>
+<h2 id="custom-parser-single-object-type">Custom Parser - Single Object Type</h2>
+<h2 id="the-dataset">The Dataset</h2>
+<p>This tutorial uses the <a href="http://www.global-wheat.com/">Global Wheat Detection dataset</a> which can be downloaded from <a href="https://www.kaggle.com/c/global-wheat-detection/data">Kaggle</a>.</p>
+<p>The aim is to detect a single object class: the wheat head.</p>
+<h3 id="installation-and-imports">Installation and Imports</h3>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">raw</span><span class="o">.</span><span class="n">githubusercontent</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">airctic</span><span class="o">/</span><span class="n">icevision</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">install_colab</span><span class="o">.</span><span class="n">sh</span>
+<span class="err">!</span><span class="n">bash</span> <span class="n">install_colab</span><span class="o">.</span><span class="n">sh</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">icevision.all</span> <span class="kn">import</span> <span class="o">*</span>
+</code></pre></div>
+<h3 id="uploading-the-data-from-kaggle">Uploading the Data from Kaggle</h3>
+<p>You will need your personal Kaggle API token (kaggle.json).  If you don't have one yet, go to your Kaggle account.  Once inside your Account, under the 'API' portion, click on 'Create New API Token'.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">files</span>
+<span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+<span class="c1"># kaggle.json</span>
+</code></pre></div>
+<p><input type="file" id="files-871cae63-4b6d-4395-ae71-40ac767211cf" name="files[]" multiple disabled
+   style="border:none" /></p>
+<output id="result-871cae63-4b6d-4395-ae71-40ac767211cf">
+ Upload widget is only available when the cell has been executed in the
+ current browser session. Please rerun this cell to enable.
+ </output>
+<script src="/nbextensions/google.colab/files.js"></script>
+
+<p><div class="highlight"><pre><span></span><code><span class="err">!</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">~/.</span><span class="n">kaggle</span><span class="o">/</span>
+<span class="err">!</span> <span class="n">cp</span> <span class="o">/</span><span class="n">kaggle</span><span class="o">.</span><span class="n">json</span> <span class="o">~/.</span><span class="n">kaggle</span><span class="o">/</span>
+<span class="err">!</span> <span class="n">chmod</span> <span class="mi">600</span> <span class="o">~/.</span><span class="n">kaggle</span><span class="o">/</span><span class="n">kaggle</span><span class="o">.</span><span class="n">json</span>
+<span class="err">!</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">--</span><span class="n">force</span><span class="o">-</span><span class="n">reinstall</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span> <span class="n">kaggle</span>
+
+<span class="err">!</span> <span class="n">kaggle</span> <span class="n">competitions</span> <span class="n">download</span> <span class="o">-</span><span class="n">c</span> <span class="k">global</span><span class="o">-</span><span class="n">wheat</span><span class="o">-</span><span class="n">detection</span>
+<span class="err">!</span> <span class="n">unzip</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="k">global</span><span class="o">-</span><span class="n">wheat</span><span class="o">-</span><span class="n">detection</span><span class="o">.</span><span class="n">zip</span> <span class="o">-</span><span class="n">d</span> <span class="o">/</span><span class="n">content</span><span class="o">/</span><span class="k">global</span><span class="o">-</span><span class="n">wheat</span><span class="o">-</span><span class="n">detection</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">!</span><span class="n">ls</span>
+</code></pre></div></p>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>Saving kaggle.json to kaggle (1).json
+
+{&#39;kaggle.json&#39;: b&#39;{&quot;username&quot;:&quot;marialrodriguez&quot;,&quot;key&quot;:&quot;e3f17a764b333ed8cc29ecaf8d2b6b4e&quot;}&#39;}
+
+&#39;=5.1&#39;    global-wheat-detection       install_colab.sh   kaggle.json
+ gdrive   global-wheat-detection.zip  &#39;kaggle (1).json&#39;   sample_data
+</code></pre></div>
+</div>
+<h3 id="change-directories-to-allow-a-more-direct-route">Change Directories to allow a more direct route</h3>
+<div class="highlight"><pre><span></span><code><span class="o">%</span><span class="n">cd</span> <span class="k">global</span><span class="o">-</span><span class="n">wheat</span><span class="o">-</span><span class="n">detection</span>
+<span class="err">!</span><span class="n">ls</span>  <span class="c1"># pwd, folders</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>/content/global-wheat-detection
+&#39;=5.1&#39;                kaggle.json         train
+ checkpoints              models              train.csv
+ global-wheat-detection.zip   sample_submission.csv
+ install_colab.sh         test
+</code></pre></div>
+</div>
+<h3 id="quick-exploration-of-the-compiled-annotations-in-the-csv-file">Quick Exploration of the compiled annotations in the CSV file</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre></div>
+</div>
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>image_id</th>
+      <th>width</th>
+      <th>height</th>
+      <th>bbox</th>
+      <th>source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>147790</th>
+      <td>5e0747034</td>
+      <td>1024</td>
+      <td>1024</td>
+      <td>[134.0, 228.0, 141.0, 71.0]</td>
+      <td>arvalis_2</td>
+    </tr>
+    <tr>
+      <th>147791</th>
+      <td>5e0747034</td>
+      <td>1024</td>
+      <td>1024</td>
+      <td>[430.0, 13.0, 184.0, 79.0]</td>
+      <td>arvalis_2</td>
+    </tr>
+    <tr>
+      <th>147792</th>
+      <td>5e0747034</td>
+      <td>1024</td>
+      <td>1024</td>
+      <td>[875.0, 740.0, 94.0, 61.0]</td>
+      <td>arvalis_2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">image_id</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</code></pre></div></p>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 147793 entries, 0 to 147792
+Data columns (total 5 columns):
+ #   Column    Non-Null Count   Dtype 
+---  ------    --------------   ----- 
+ 0   image_id  147793 non-null  object
+ 1   width     147793 non-null  int64 
+ 2   height    147793 non-null  int64 
+ 3   bbox      147793 non-null  object
+ 4   source    147793 non-null  object
+dtypes: int64(2), object(3)
+memory usage: 5.6+ MB
+
+3373
+
+[&#39;usask_1&#39;,
+ &#39;arvalis_1&#39;,
+ &#39;inrae_1&#39;,
+ &#39;ethz_1&#39;,
+ &#39;arvalis_3&#39;,
+ &#39;rres_1&#39;,
+ &#39;arvalis_2&#39;]
+</code></pre></div>
+</div>
+<ul>
+<li>
+<p>The dataset has 147,793 entries from 3,373 images.  </p>
+</li>
+<li>
+<p>An image may contain more than one object.  </p>
+</li>
+<li>
+<p>The filename 'image_id' does not have a '.jpg' extension yet, and will need to be addressed during parsing to correspond with the name for each image in the <em>train</em> folder.</p>
+</li>
+<li>
+<p>The image size is given in 'width' and 'height'.  </p>
+</li>
+<li>
+<p>The bounding box coordinates are given in 'bbox' and is formatted as [xmin, ymin, box width, box height].</p>
+</li>
+<li>
+<p>The 'source' likely pertains to instution source for the image, which is not relevant for this study.</p>
+</li>
+</ul>
+<h3 id="establishing-paths">Establishing Paths</h3>
+<div class="highlight"><pre><span></span><code><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;./&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;train&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">ls</span><span class="p">()</span>
+<span class="c1"># 3,422 images</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">data_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/content/global-wheat-detection&#39;</span><span class="p">)</span>
+<span class="n">class_map</span> <span class="o">=</span> <span class="n">ClassMap</span><span class="p">([</span><span class="s1">&#39;wheat&#39;</span><span class="p">])</span>
+<span class="n">class_map</span>
+</code></pre></div></p>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>(#10) [Path(&#39;=5.1&#39;),Path(&#39;checkpoints&#39;),Path(&#39;global-wheat-detection.zip&#39;),Path(&#39;train.csv&#39;),Path(&#39;train&#39;),Path(&#39;install_colab.sh&#39;),Path(&#39;sample_submission.csv&#39;),Path(&#39;models&#39;),Path(&#39;kaggle.json&#39;),Path(&#39;test&#39;)]
+
+(#3422) [Path(&#39;train/cbbc58a4c.jpg&#39;),Path(&#39;train/c2d23766d.jpg&#39;),Path(&#39;train/a93b2e119.jpg&#39;),Path(&#39;train/d9a2181ed.jpg&#39;),Path(&#39;train/b2fbd25ac.jpg&#39;),Path(&#39;train/900d273d2.jpg&#39;),Path(&#39;train/77222a135.jpg&#39;),Path(&#39;train/f7d780303.jpg&#39;),Path(&#39;train/5a9a55ae5.jpg&#39;),Path(&#39;train/19f4faf0f.jpg&#39;)...]
+
+&lt;ClassMap: {&#39;background&#39;: 0, &#39;wheat&#39;: 1}&gt;
+</code></pre></div>
+</div>
+<h3 id="parser">Parser</h3>
+<p>The template will help formulate the custom parser.</p>
+<div class="highlight"><pre><span></span><code><span class="n">template_record</span> <span class="o">=</span> <span class="n">ObjectDetectionRecord</span><span class="p">()</span>
+
+<span class="n">Parser</span><span class="o">.</span><span class="n">generate_template</span><span class="p">(</span><span class="n">template_record</span><span class="p">)</span>
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">WheatHeadParser</span><span class="p">(</span><span class="n">Parser</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">template_record</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">template_record</span><span class="o">=</span><span class="n">template_record</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">data_dir</span><span class="o">/</span><span class="s1">&#39;train.csv&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_map</span> <span class="o">=</span> <span class="n">ClassMap</span><span class="p">([</span><span class="s1">&#39;wheat&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">o</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">record_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Hashable</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">o</span><span class="o">.</span><span class="n">image_id</span> 
+
+    <span class="k">def</span> <span class="nf">parse_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">record</span><span class="p">,</span> <span class="n">is_new</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_new</span><span class="p">:</span>
+            <span class="n">filepath</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">/</span> <span class="s1">&#39;train&#39;</span> <span class="o">/</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">o</span><span class="o">.</span><span class="n">image_id</span><span class="si">}</span><span class="s1">.jpg&#39;</span> 
+            <span class="n">record</span><span class="o">.</span><span class="n">set_filepath</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="n">record</span><span class="o">.</span><span class="n">set_img_size</span><span class="p">(</span><span class="n">ImgSize</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">height</span><span class="p">))</span>
+            <span class="n">record</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">set_class_map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">class_map</span><span class="p">)</span>
+
+        <span class="n">record</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">add_bboxes</span><span class="p">([</span><span class="n">BBox</span><span class="o">.</span><span class="n">from_xywh</span><span class="p">(</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">bbox</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">))])</span>
+        <span class="n">record</span><span class="o">.</span><span class="n">detection</span><span class="o">.</span><span class="n">add_labels</span><span class="p">([</span><span class="s1">&#39;wheat&#39;</span><span class="p">])</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">parser</span> <span class="o">=</span> <span class="n">WheatHeadParser</span><span class="p">(</span><span class="n">template_record</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">)</span>
+
+<span class="n">train_records</span><span class="p">,</span> <span class="n">valid_records</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse</span><span class="p">()</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">show_record</span><span class="p">(</span><span class="n">train_records</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> <span class="n">display_label</span><span class="o">=</span><span class="kc">False</span> <span class="p">)</span>
+</code></pre></div></p>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>class MyParser(Parser):
+    def __init__(self, template_record):
+        super().__init__(template_record=template_record)
+    def __iter__(self) -&gt; Any:
+    def __len__(self) -&gt; int:
+    def record_id(self, o: Any) -&gt; Hashable:
+    def parse_fields(self, o: Any, record: BaseRecord, is_new: bool):
+        record.set_filepath(&lt;Union[str, Path]&gt;)
+        record.set_img_size(&lt;ImgSize&gt;)
+        record.detection.set_class_map(&lt;ClassMap&gt;)
+        record.detection.add_labels(&lt;Sequence[Hashable]&gt;)
+        record.detection.add_bboxes(&lt;Sequence[BBox]&gt;)
+
+  0%|          | 0/147793 [00:00&lt;?, ?it/s]
+
+[1m[1mINFO    [0m[1m[0m - [1m[34m[1mAutofixing records[0m[1m[34m[0m[1m[0m | [36micevision.parsers.parser[0m:[36mparse[0m:[36m122[0m
+
+  0%|          | 0/3373 [00:00&lt;?, ?it/s]
+</code></pre></div>
+</div>
+
+<p><img alt="png" src="../images/custom_parser/custom_parser_25_0.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">train_records</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>BaseRecord
+</code></pre></div>
+</div>
+
+<div class="highlight"><pre><span></span><code><span class="n">show_records</span><span class="p">(</span><span class="n">train_records</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">],</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">display_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>common: 
+    - Filepath: /content/global-wheat-detection/train/46630486d.jpg
+    - Img: None
+    - Image size ImgSize(width=1024, height=1024)
+    - Record ID: 46630486d
+detection: 
+    - Class Map: &lt;ClassMap: {&#39;background&#39;: 0, &#39;wheat&#39;: 1}&gt;
+    - Labels: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    - BBoxes: [&lt;BBox (xmin:955.0, ymin:380.0, xmax:1019.0, ymax:490.0)&gt;, &lt;BBox (xmin:477.0, ymin:532.0, xmax:537.0, ymax:628.0)&gt;, &lt;BBox (xmin:826.0, ymin:950.0, xmax:920.0, ymax:1021.0)&gt;, &lt;BBox (xmin:819.0, ymin:200.0, xmax:908.0, ymax:285.0)&gt;, &lt;BBox (xmin:634.0, ymin:578.0, xmax:750.0, ymax:629.0)&gt;, &lt;BBox (xmin:595.0, ymin:394.0, xmax:671.0, ymax:480.0)&gt;, &lt;BBox (xmin:805.0, ymin:471.0, xmax:866.0, ymax:537.0)&gt;, &lt;BBox (xmin:84.0, ymin:498.0, xmax:116.0, ymax:592.0)&gt;, &lt;BBox (xmin:630.0, ymin:801.0, xmax:719.0, ymax:875.0)&gt;, &lt;BBox (xmin:165.0, ymin:133.0, xmax:226.0, ymax:199.0)&gt;, &lt;BBox (xmin:658.0, ymin:64.0, xmax:690.0, ymax:158.0)&gt;, &lt;BBox (xmin:346.0, ymin:114.0, xmax:400.0, ymax:187.0)&gt;, &lt;BBox (xmin:488.0, ymin:412.0, xmax:569.0, ymax:496.0)&gt;, &lt;BBox (xmin:519.0, ymin:753.0, xmax:579.0, ymax:856.0)&gt;, &lt;BBox (xmin:992.0, ymin:737.0, xmax:1024.0, ymax:821.0)&gt;, &lt;BBox (xmin:233.0, ymin:576.0, xmax:299.0, ymax:621.0)&gt;, &lt;BBox (xmin:9.0, ymin:311.0, xmax:69.0, ymax:364.0)&gt;, &lt;BBox (xmin:471.0, ymin:786.0, xmax:533.0, ymax:857.0)&gt;, &lt;BBox (xmin:921.0, ymin:536.0, xmax:973.0, ymax:576.0)&gt;, &lt;BBox (xmin:311.0, ymin:182.0, xmax:352.0, ymax:260.0)&gt;, &lt;BBox (xmin:734.0, ymin:746.0, xmax:771.0, ymax:820.0)&gt;, &lt;BBox (xmin:610.0, ymin:233.0, xmax:636.0, ymax:314.0)&gt;, &lt;BBox (xmin:425.0, ymin:546.0, xmax:461.0, ymax:615.0)&gt;, &lt;BBox (xmin:368.0, ymin:510.0, xmax:488.0, ymax:543.0)&gt;, &lt;BBox (xmin:0.0, ymin:686.0, xmax:42.0, ymax:733.0)&gt;, &lt;BBox (xmin:393.0, ymin:435.0, xmax:476.0, ymax:473.0)&gt;, &lt;BBox (xmin:694.0, ymin:289.0, xmax:742.0, ymax:327.0)&gt;, &lt;BBox (xmin:363.0, ymin:268.0, xmax:421.0, ymax:309.0)&gt;, &lt;BBox (xmin:166.0, ymin:770.0, xmax:219.0, ymax:838.0)&gt;, &lt;BBox (xmin:136.0, ymin:616.0, xmax:245.0, ymax:666.0)&gt;, &lt;BBox (xmin:774.0, ymin:533.0, xmax:804.0, ymax:598.0)&gt;, &lt;BBox (xmin:315.0, ymin:836.0, xmax:361.0, ymax:875.0)&gt;, &lt;BBox (xmin:445.0, ymin:902.0, xmax:536.0, ymax:940.0)&gt;, &lt;BBox (xmin:439.0, ymin:111.0, xmax:464.0, ymax:189.0)&gt;, &lt;BBox (xmin:161.2, ymin:235.0, xmax:236.8, ymax:269.4)&gt;, &lt;BBox (xmin:312.0, ymin:432.0, xmax:375.0, ymax:493.0)&gt;, &lt;BBox (xmin:522.0, ymin:972.0, xmax:576.0, ymax:998.0)&gt;, &lt;BBox (xmin:378.0, ymin:477.0, xmax:454.0, ymax:515.0)&gt;, &lt;BBox (xmin:398.0, ymin:122.0, xmax:432.0, ymax:199.0)&gt;, &lt;BBox (xmin:577.0, ymin:794.0, xmax:643.0, ymax:853.0)&gt;, &lt;BBox (xmin:109.0, ymin:570.0, xmax:152.0, ymax:610.0)&gt;, &lt;BBox (xmin:118.0, ymin:458.0, xmax:159.0, ymax:495.0)&gt;, &lt;BBox (xmin:357.0, ymin:290.0, xmax:415.0, ymax:341.0)&gt;, &lt;BBox (xmin:143.0, ymin:301.0, xmax:199.0, ymax:322.0)&gt;, &lt;BBox (xmin:234.0, ymin:122.0, xmax:274.0, ymax:188.0)&gt;, &lt;BBox (xmin:235.0, ymin:274.0, xmax:292.0, ymax:326.0)&gt;, &lt;BBox (xmin:845.0, ymin:996.0, xmax:881.0, ymax:1024.0)&gt;, &lt;BBox (xmin:275.0, ymin:50.0, xmax:322.0, ymax:66.0)&gt;, &lt;BBox (xmin:641.0, ymin:884.0, xmax:699.0, ymax:931.0)&gt;, &lt;BBox (xmin:282.0, ymin:395.0, xmax:330.0, ymax:447.0)&gt;, &lt;BBox (xmin:54.0, ymin:740.0, xmax:91.0, ymax:786.0)&gt;, &lt;BBox (xmin:813.0, ymin:898.0, xmax:851.0, ymax:944.0)&gt;, &lt;BBox (xmin:164.0, ymin:534.0, xmax:195.0, ymax:574.0)&gt;, &lt;BBox (xmin:185.0, ymin:835.0, xmax:239.0, ymax:867.0)&gt;, &lt;BBox (xmin:366.0, ymin:508.0, xmax:415.0, ymax:576.0)&gt;, &lt;BBox (xmin:820.0, ymin:243.0, xmax:864.0, ymax:291.0)&gt;, &lt;BBox (xmin:981.0, ymin:802.0, xmax:1020.0, ymax:864.0)&gt;, &lt;BBox (xmin:491.0, ymin:850.0, xmax:541.0, ymax:903.0)&gt;]
+</code></pre></div>
+</div>
+
+<p><img alt="png" src="../images/custom_parser/custom_parser_27_0.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">show_records</span><span class="p">(</span><span class="n">train_records</span><span class="p">[</span><span class="mi">5</span><span class="p">:</span><span class="mi">7</span><span class="p">],</span> <span class="n">display_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/custom_parser/custom_parser_28_0.png" /></p>
+<h3 id="transforms">Transforms</h3>
+<div class="highlight"><pre><span></span><code><span class="n">presize</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">image_size</span> <span class="o">=</span> <span class="mi">384</span>
+
+<span class="n">train_tfms</span> <span class="o">=</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Adapter</span><span class="p">([</span><span class="o">*</span><span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">aug_tfms</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">image_size</span><span class="p">,</span> <span class="n">presize</span><span class="o">=</span><span class="n">presize</span><span class="p">),</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Normalize</span><span class="p">()])</span>
+<span class="n">valid_tfms</span> <span class="o">=</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Adapter</span><span class="p">([</span><span class="o">*</span><span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">resize_and_pad</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="n">image_size</span><span class="p">),</span> <span class="n">tfms</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">Normalize</span><span class="p">()])</span>
+</code></pre></div>
+<h3 id="train-and-validation-dataset-objects">Train and Validation Dataset Objects</h3>
+<div class="highlight"><pre><span></span><code><span class="n">train_ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">train_records</span><span class="p">,</span> <span class="n">train_tfms</span><span class="p">)</span>
+<span class="n">valid_ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">valid_records</span><span class="p">,</span> <span class="n">valid_tfms</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_ds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">show_samples</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">display_label</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+<p><img alt="png" src="../images/custom_parser/custom_parser_33_0.png" /></p>
+<h3 id="model">Model</h3>
+<div class="highlight"><pre><span></span><code><span class="n">selection</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">extra_args</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">if</span> <span class="n">selection</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+  <span class="n">model_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">mmdet</span><span class="o">.</span><span class="n">retinanet</span>
+  <span class="n">backbone</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">backbones</span><span class="o">.</span><span class="n">resnet50_fpn_1x</span>
+
+<span class="k">elif</span> <span class="n">selection</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="c1"># The Retinanet model is also implemented in the torchvision library</span>
+  <span class="n">model_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">torchvision</span><span class="o">.</span><span class="n">retinanet</span>
+  <span class="n">backbone</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">backbones</span><span class="o">.</span><span class="n">resnet50_fpn</span>
+
+<span class="k">elif</span> <span class="n">selection</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+  <span class="n">model_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ross</span><span class="o">.</span><span class="n">efficientdet</span>
+  <span class="n">backbone</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">backbones</span><span class="o">.</span><span class="n">tf_lite0</span>
+  <span class="c1"># The efficientdet model requires an img_size parameter</span>
+  <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;img_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_size</span>
+
+<span class="k">elif</span> <span class="n">selection</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+  <span class="n">model_type</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ultralytics</span><span class="o">.</span><span class="n">yolov5</span>
+  <span class="n">backbone</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">backbones</span><span class="o">.</span><span class="n">small</span>
+  <span class="c1"># The yolov5 model requires an img_size parameter</span>
+  <span class="n">extra_args</span><span class="p">[</span><span class="s1">&#39;img_size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">image_size</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">backbone</span><span class="o">=</span><span class="n">backbone</span><span class="p">(</span><span class="n">pretrained</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">num_classes</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">parser</span><span class="o">.</span><span class="n">class_map</span><span class="p">),</span> <span class="o">**</span><span class="n">extra_args</span><span class="p">)</span> 
+</code></pre></div>
+<h3 id="dataloaders">DataLoaders</h3>
+<div class="highlight"><pre><span></span><code><span class="n">train_dl</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">train_dl</span><span class="p">(</span><span class="n">train_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">valid_dl</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">valid_dl</span><span class="p">(</span><span class="n">valid_ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">model_type</span><span class="o">.</span><span class="n">show_batch</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">valid_dl</span><span class="p">),</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="metrics-and-learner">Metrics and Learner</h3>
+<div class="highlight"><pre><span></span><code><span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="n">COCOMetric</span><span class="p">(</span><span class="n">metric_type</span><span class="o">=</span><span class="n">COCOMetricType</span><span class="o">.</span><span class="n">bbox</span><span class="p">)]</span>
+
+<span class="n">learn</span> <span class="o">=</span> <span class="n">model_type</span><span class="o">.</span><span class="n">fastai</span><span class="o">.</span><span class="n">learner</span><span class="p">(</span><span class="n">dls</span><span class="o">=</span><span class="p">[</span><span class="n">train_dl</span><span class="p">,</span> <span class="n">valid_dl</span><span class="p">],</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="n">metrics</span><span class="p">)</span>
+
+<span class="n">learn</span><span class="o">.</span><span class="n">lr_find</span><span class="p">()</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>SuggestedLRs(lr_min=0.00043651582673192023, lr_steep=0.04786301031708717)
+</code></pre></div>
+</div>
+
+<p><img alt="png" src="../images/custom_parser/custom_parser_40_2.png" /></p>
+<div class="highlight"><pre><span></span><code><span class="n">learn</span><span class="o">.</span><span class="n">fine_tune</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mf">4e-4</span><span class="p">,</span> <span class="n">freeze_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>COCOMetric</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.643232</td>
+      <td>0.609152</td>
+      <td>0.236787</td>
+      <td>04:38</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>&lt;div&gt;
+    &lt;style&gt;
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    &lt;/style&gt;
+  &lt;progress value=&#39;14&#39; class=&#39;&#39; max=&#39;20&#39; style=&#39;width:300px; height:20px; vertical-align: middle;&#39;&gt;&lt;/progress&gt;
+  70.00% [14/20 1:06:06&lt;28:19]
+&lt;/div&gt;
+</code></pre></div>
+</div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>COCOMetric</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.539485</td>
+      <td>0.512883</td>
+      <td>0.329394</td>
+      <td>04:51</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.524518</td>
+      <td>0.495535</td>
+      <td>0.346624</td>
+      <td>04:47</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.502157</td>
+      <td>0.475722</td>
+      <td>0.369555</td>
+      <td>04:49</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.490112</td>
+      <td>0.475499</td>
+      <td>0.365245</td>
+      <td>04:48</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.479012</td>
+      <td>0.464658</td>
+      <td>0.375988</td>
+      <td>04:45</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.471368</td>
+      <td>0.466564</td>
+      <td>0.378793</td>
+      <td>04:45</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.465504</td>
+      <td>0.445768</td>
+      <td>0.400851</td>
+      <td>04:43</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.456183</td>
+      <td>0.429268</td>
+      <td>0.409720</td>
+      <td>04:41</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.444008</td>
+      <td>0.426961</td>
+      <td>0.418625</td>
+      <td>04:39</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.430694</td>
+      <td>0.418965</td>
+      <td>0.421158</td>
+      <td>04:35</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.431581</td>
+      <td>0.416741</td>
+      <td>0.429150</td>
+      <td>04:40</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.423635</td>
+      <td>0.417259</td>
+      <td>0.428600</td>
+      <td>04:45</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.418421</td>
+      <td>0.420164</td>
+      <td>0.428826</td>
+      <td>04:37</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.402397</td>
+      <td>0.404999</td>
+      <td>0.436926</td>
+      <td>04:34</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>&lt;div&gt;
+    &lt;style&gt;
+        /* Turns off some styling */
+        progress {
+            /* gets rid of default border in Firefox and Opera. */
+            border: none;
+            /* Needs to be in here for Safari polyfill so background images work as expected. */
+            background-size: auto;
+        }
+        .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+            background: #F44336;
+        }
+    &lt;/style&gt;
+  &lt;progress value=&#39;85&#39; class=&#39;&#39; max=&#39;85&#39; style=&#39;width:300px; height:20px; vertical-align: middle;&#39;&gt;&lt;/progress&gt;
+  100.00% [85/85 00:37&lt;00:00 0.4000]
+&lt;/div&gt;
+</code></pre></div>
+</div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: left;">
+      <th>epoch</th>
+      <th>train_loss</th>
+      <th>valid_loss</th>
+      <th>COCOMetric</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>0.539485</td>
+      <td>0.512883</td>
+      <td>0.329394</td>
+      <td>04:51</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>0.524518</td>
+      <td>0.495535</td>
+      <td>0.346624</td>
+      <td>04:47</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>0.502157</td>
+      <td>0.475722</td>
+      <td>0.369555</td>
+      <td>04:49</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>0.490112</td>
+      <td>0.475499</td>
+      <td>0.365245</td>
+      <td>04:48</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>0.479012</td>
+      <td>0.464658</td>
+      <td>0.375988</td>
+      <td>04:45</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>0.471368</td>
+      <td>0.466564</td>
+      <td>0.378793</td>
+      <td>04:45</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>0.465504</td>
+      <td>0.445768</td>
+      <td>0.400851</td>
+      <td>04:43</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>0.456183</td>
+      <td>0.429268</td>
+      <td>0.409720</td>
+      <td>04:41</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>0.444008</td>
+      <td>0.426961</td>
+      <td>0.418625</td>
+      <td>04:39</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>0.430694</td>
+      <td>0.418965</td>
+      <td>0.421158</td>
+      <td>04:35</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>0.431581</td>
+      <td>0.416741</td>
+      <td>0.429150</td>
+      <td>04:40</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>0.423635</td>
+      <td>0.417259</td>
+      <td>0.428600</td>
+      <td>04:45</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>0.418421</td>
+      <td>0.420164</td>
+      <td>0.428826</td>
+      <td>04:37</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>0.402397</td>
+      <td>0.404999</td>
+      <td>0.436926</td>
+      <td>04:34</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>0.399981</td>
+      <td>0.406486</td>
+      <td>0.440906</td>
+      <td>04:38</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>0.395512</td>
+      <td>0.400269</td>
+      <td>0.442585</td>
+      <td>04:37</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>0.389025</td>
+      <td>0.400635</td>
+      <td>0.440688</td>
+      <td>04:37</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>0.388219</td>
+      <td>0.399258</td>
+      <td>0.444396</td>
+      <td>04:40</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>0.388210</td>
+      <td>0.398245</td>
+      <td>0.444733</td>
+      <td>04:36</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>0.386009</td>
+      <td>0.397616</td>
+      <td>0.445394</td>
+      <td>04:34</td>
+    </tr>
+  </tbody>
+</table>
+
+
+### Visualize Results
+
+
+<div class="highlight"><pre><span></span><code><span class="n">model_type</span><span class="o">.</span><span class="n">show_results</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">valid_ds</span><span class="p">)</span> 
+</code></pre></div>
+
+
+
+![png](images/custom_parser/custom_parser_43_0.png)
+
+
+
+### Save the Model
+
+
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/gdrive&#39;</span><span class="p">,</span> <span class="n">force_remount</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">root_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;/content/gdrive/My Drive/&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="n">fname_model</span> <span class="o">=</span> <span class="s1">&#39;wheat-mmdet_retinanet.pth&#39;</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="n">root_dir</span><span class="o">/</span><span class="s1">&#39;models&#39;</span><span class="o">/</span><span class="n">fname_model</span><span class="p">)</span>
+</code></pre></div>
+<div class="k-default-codeblock">
+<div class="highlight"><pre><span></span><code>Mounted at /content/gdrive
+</code></pre></div>
+</div>
+## Happy Learning!
+
+If you need any assistance, feel free to join our [forum](https://discord.gg/JDBeZYK).
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../install/" title="Installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../birds/" title="Birds" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Birds
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            airctic.com
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://unpkg.com/mermaid@8.4.6/dist/mermaid.min.js"></script>
+      
+        <script src="../js/termynal.js"></script>
+      
+        <script src="../js/custom.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/@widgetbot/crate@3"></script>
+      
+        <script src="../js/crate.js"></script>
+      
+    
+  </body>
+</html>
