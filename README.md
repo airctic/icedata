@@ -39,7 +39,7 @@
 pip install icedata
 ```
 
-For more installation options, check our extensive [documentation](https://airctic.github.io/icevdata/install/).
+For more installation options, check our extensive [documentation](https://airctic.github.io/icedata/install/).
 
 **Important:** We currently only support Linux/MacOS.
 <!-- Not included in docs - end -->
@@ -72,7 +72,7 @@ The `Datasets` class is designed to simplify loading and parsing a wide range of
 
 - Out-of-the-box parsers convert common dataset annotation formats into the unified IceVision Data Format
 
-IceData provides several ready-to-use datasets that use both common annotation formats such as COCO and VOC as well as other annotation formats such [WheatParser](https://airctic.github.io/icevision/custom_parser/) used in the [Kaggle Global Wheat Competition](https://www.kaggle.com/c/global-wheat-detection)
+IceData provides several ready-to-use datasets that use both common annotation formats such as COCO and VOC as well as other annotation formats such [WheatParser](https://airctic.github.io/icedata/custom_parser/) used in the [Kaggle Global Wheat Competition](https://www.kaggle.com/c/global-wheat-detection)
 
 ## Usage
 
@@ -145,14 +145,14 @@ show_records(train_records[:3], ncols=3, class_map=class_map)
 ```
 
 !!! info "Note" 
-    Notice how we use the parser associated with the fridge dataset [icedata.fridge.parser()](https://github.com/airctic/icedata/blob/master/icedata/datasets/fridge/parsers.py):
+    Notice how we use the parser associated with the fridge dataset [icedata.fridge.parser()](https://github.com/airctic/icedata/blob/master/icedata/datasets/fridge/parser.py):
     
     **parser = icedata.fridge.parser(data_dir, class_map)**
 
 
 ### Datasets with a new annotation format
 
-Sometimes, you will need to define a new annotation format for you dataset. Additional information can be found in the [documentation](https://airctic.com/custom_parser/). In this case, we strongly recommend you following the file structure and naming conventions used in the  examples such as the [Fridge dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge), or the [PETS dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets).
+Sometimes, you will need to define a new annotation format for you dataset. Additional information can be found in the [documentation](https://airctic.github.io/icedata/custom_parser/). In this case, we strongly recommend you following the file structure and naming conventions used in the  examples such as the [Fridge dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/fridge), or the [PETS dataset](https://github.com/airctic/icedata/tree/master/icedata/datasets/pets).
 
 ![image](https://airctic.github.io/icedata/images/datasets-folder-structure.png)
 
